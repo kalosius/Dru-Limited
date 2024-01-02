@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'style/style.css' %}">
+    <link rel="icon" href="{% static 'style/style.css' %}" type="image/x-icon">
+    <title>DruInteriors</title>
+</head>
+<body>
+    <!-- nav bar -->
+    <nav>
+        <div class="nav-list">
+            
+            <h1><img src="{% static 'images/logo.png' %} " alt="">DRU Interiors</h1>
+            <ul class="nav-unorder">
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'furniture' %}">Furniture</a></li>
+                <li><a href="{% url 'gadgets' %}">Gadgets</a></li>
+                <li><a href="{% url 'phones&accessories' %}">phones</a></li>
+                <li><a href="{% url 'clothes' %}">clothes</a></li>
+                <li><a href="{% url 'sneakers' %}">sneakers</a></li>
+                <li><a href="{% url 'pets' %}">pets</a></li>
+                <li><a href="{% url 'about' %}">About</a></li>
+                <li><a href="{% url 'login' %}">Login</a></li>
+            </ul>
+            <button class="toggle-button" id="toggle">&#9776;Menu</button>
+
+        </div>
+    </nav>
+    <!-- nav end -->
+
+    {% block content %}
+
+    {% endblock %}
+
+
+</body>
+</html>
