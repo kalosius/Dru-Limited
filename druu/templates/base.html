@@ -22,13 +22,14 @@
             <ul class="nav-unorder">
                 <li><a href="{% url 'home' %}">Home</a></li>
                 <li><a href="{% url 'furniture' %}">Furniture</a></li>
+                <li><a href="{% url 'about' %}">About</a></li>
+                <li><a href="{% url 'contact' %}">Contact</a></li>
+                {% if user.is_authenticated %}
                 <li><a href="{% url 'gadgets' %}">Gadgets</a></li>
                 <li><a href="{% url 'phones&accessories' %}">phones</a></li>
                 
                 <!-- <li><a href="">sneakers</a></li> -->
                 <li><a href="{% url 'pets' %}">pets</a></li>
-                <li><a href="{% url 'about' %}">About</a></li>
-                {% if user.is_authenticated %}
                 <li><a href="{% url 'logout' %}">Logout</a></li>
                 {% else %}
                 <li><a href="{% url 'login' %}">Login</a></li>
@@ -41,6 +42,16 @@
 
         </div>
     </nav>
+
+
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>{{ message }}</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endfor %}
+    {% endif %}
     <!-- nav end -->
 
     {% block content %}

@@ -24,7 +24,7 @@ def signin(request):
         user = authenticate(username=username, password=password)
         if user is not None:
             login(request, user)
-            messages.success(request, 'You are now logged in')
+            messages.success(request, f'Welcome Back {username}!')
             return redirect('home')
         else:
             messages.success(request, 'Invalid login credentials')

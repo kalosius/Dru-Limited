@@ -1,13 +1,16 @@
 {% extends 'base.html' %}
 {% block content %}
-
-<form method="POST" action="{% url 'login' %}">
-    {% csrf_token %}
-    <input type="text" name="username" placeholder="Username">
-    <input type="password" name="password" placeholder="Enter Password">
-    <br><br>
-    <button type="submit" class="btn btn-secondary">Login</button>
-</form>
+<br><br>
+    <div class="container">
+        <form method="POST" action="{% url 'login' %}">
+            {% csrf_token %}
+            <input type="text" name="username" placeholder="Username">
+            <br><br>
+            <input type="password" name="password" placeholder="Enter Password">
+            <br><br>
+            <button type="submit" class="btn btn-secondary">Login</button>
+        </form>
+    </div>
 <br> <br> <br> <br> <br> <br> <br> <br> <br> <br><br> <br> <br> <br> <br> <br>  
 
 {% endblock %}
