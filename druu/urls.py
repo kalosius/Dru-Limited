@@ -8,11 +8,12 @@ urlpatterns = [
     # authentication
     path('login/', views.signin, name='login'),
     path('register/', views.registration, name="register"),
+    path('logout/', views.logout_user, name="logout"),
     # products
-    path('clothes/', views.clothes, name="clothes"),
+    # path('clothes/', views.clothes, name="clothes"),
     path('furniture/', views.furniture, name="furniture"),
     path('gadgets/', views.gadgets, name="gadgets"),
     path('pets/', views.pets, name="pets"),
     path('phones&accessories/', views.phones_and_accessories, name="phones&accessories"),
-    path('sneakers/', views.sneakers, name="sneakers"),
+    # path('sneakers/', views.sneakers, name="sneakers"),
 ]
