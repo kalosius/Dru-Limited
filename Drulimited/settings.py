@@ -111,11 +111,12 @@ INSTALLED_APPS = [
     'druu',  
 ]
 
+# Static files (CSS, JavaScript, Images)
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR , 'staticfiles')
 
-STATIC_URL = 'static/'
-
-MEDIA_URL = 'media/'
+# Media files (uploaded by users)
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
+MEDIA_URL = '/media/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
