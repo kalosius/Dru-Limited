@@ -27,9 +27,30 @@
                 {% if user.is_authenticated %}
                 <li><a href="{% url 'gadgets' %}">Gadgets</a></li>
                 <li><a href="{% url 'phones&accessories' %}">phones</a></li>
-                
                 <!-- <li><a href="">sneakers</a></li> -->
                 <li><a href="{% url 'pets' %}">pets</a></li>
+                <!-- nav -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Categories</a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="{% url 'home' %}">All Products</a></li>
+                        <li><hr class="dropdown-divider" /></li>
+                        <li><a class="dropdown-item" href="{% url 'category' 'Beddings' %}">Furniture</a></li>
+                        <li><a class="dropdown-item" href="{% url 'category' 'Phones' %}">Phones</a></li>
+                        <li><a class="dropdown-item" href="{% url 'category' 'Pets' %}">Pets</a></li>
+                        <li><a class="dropdown-item" href="{% url 'category' 'Gadgets' %}">Gadgets</a></li>
+                        <li><a class="dropdown-item" href="{% url 'category' 'Soffer' %}">Soffer</a></li>
+                    </ul>
+                </li>
+                <!-- cart -->
+                <form class="d-flex">
+                    <button class="btn btn-outline-dark" type="submit">
+                        <i class="bi-cart-fill me-1"></i>
+                        Cart
+                        <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+                    </button>
+                </form>
+                <!-- endnav -->
                 <li><a href="{% url 'logout' %}">Logout</a></li>
                 {% else %}
                 <li><a href="{% url 'login' %}">Login</a></li>

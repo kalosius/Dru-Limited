@@ -15,5 +15,7 @@ urlpatterns = [
     path('gadgets/', views.gadgets, name="gadgets"),
     path('pets/', views.pets, name="pets"),
     path('phones&accessories/', views.phones_and_accessories, name="phones&accessories"),
+    path('product/<int:pk>', views.product, name="product"),
+    path('category/<str:categories>', views.category, name='category'),
     # path('sneakers/', views.sneakers, name="sneakers"),
 ]

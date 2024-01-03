@@ -2,9 +2,27 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
-from . models import Product
+from . models import Product, Category
 
 # Create your views here.
+def product(request,pk):
+    product = Product.objects.get(id=pk)
+    return render(request, 'products/product.html', {'product':product})
+
+def category(request,categories):
+    categories = categories.replace('-', '') #making the url name with space replaced with a hyphen
+    # Grab the category from the url
+    try:
+        # look up for the category  
+        category = Category.objects.get(name=categories)
+        products = Product.object.filter(category=category)
+        return render(request, 'products/category.html', {'products':products, 'category':category})
+
+    except: 
+        messages.success(request, "Category Doesn't exist...")
+        return redirect('home')
+
+
 
 def home(request):
     products = Product.objects.all()

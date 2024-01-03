@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <!-- Header -->
+    <br><br>
+    
+    </header>
+    <style>
+        body{
+            background-color: #333;
+        }
+    </style>
+    <div class="container">
+        <div class="card mb-3" style="max-width: 540px;">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    <img src="{{ product.image.url }}" class="img-fluid rounded-start" alt="">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <center>
+                        <h5 class="card-title">{{ product.title }}</h5>
+                        <p class="card-text" >This is a wider card with some content, supporting all the products in that you are 100% nterested in. Check in for the best prices ever</p>
+                        <h2 class="card-text" >{{ product.price }}/=</h2>
+                        <button class="btn btn-primary">Add to Cart</button>
+                        <button class="btn btn-primary" style="margin-left: 20px;">view products</button>
+                    </center>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <br><br><br><br><br><br>
+
+{% endblock %}
