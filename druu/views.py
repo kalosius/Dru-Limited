@@ -10,12 +10,12 @@ def product(request,pk):
     return render(request, 'products/product.html', {'product':product})
 
 def category(request,categories):
-    categories = categories.replace('-', '') #making the url name with space replaced with a hyphen
+    # categories = categories.replace('-', '') #making the url name with space replaced with a hyphen
     # Grab the category from the url
     try:
         # look up for the category  
         category = Category.objects.get(name=categories)
-        products = Product.object.filter(category=category)
+        products = Product.objects.filter(category=category)
         return render(request, 'products/category.html', {'products':products, 'category':category})
 
     except: 
