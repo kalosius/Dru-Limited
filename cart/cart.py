@@ -29,6 +29,9 @@
 #     def __len__(self):
 #         return len(self.cart)
 
+
+# for the above code, sessions weren't working correctly so I had to change it to this:
+
 from druu.models import Product
 
 class Cart():
