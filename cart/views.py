@@ -8,7 +8,11 @@ from django.http import HttpResponse
 # Create your views here.
 
 def cart_summary(request):
-    return render(request, 'cart_summary.html', {})
+    # Get the cart
+    cart = Cart(request)
+    cart_products = cart.get_prods
+
+    return render(request, 'cart_summary.html', {'cart_products':cart_products})
 
 def cart_add(request):
     # get the cart
@@ -18,12 +22,13 @@ def cart_add(request):
     if request.POST.get('action') == 'post':
         # get stuff
         product_id = int(request.POST.get('product_id'))
+        product_qty = int(request.POST.get('product_qty'))
 
         # lookup product in the DB
         product = get_object_or_404(Product, id=product_id)
 
         # save to session
-        cart.add(product)
+        cart.add(product, quantity=product_qty)
 
 
         # get cart quantity

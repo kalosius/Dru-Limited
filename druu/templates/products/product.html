@@ -11,7 +11,7 @@
         }
     </style>
     <div class="container">
-        <div class="card mb-3" style="max-width: 540px;">
+        <div class="card mb-3" style="max-width: 1200px;">
             <div class="row g-0">
                 <div class="col-md-4">
                     <img src="{{ product.image.url }}" class="img-fluid rounded-start" alt="">
@@ -20,8 +20,23 @@
                     <div class="card-body">
                         <center>
                         <h5 class="card-title">{{ product.title }}</h5>
-                        <p class="card-text" >This is a wider card with some content, supporting all the products in that you are 100% nterested in. Check in for the best prices ever</p>
+                        <p class="card-text" >This is a wider card with some content, supporting all the products in that you are 100% nterested in. Check in for the best prices ever</p> <br>
                         <h2 class="card-text" >{{ product.price }}/=</h2>
+                            <br><br>
+                        <div class="row justify-content-center">
+                            <div class="col-md-2">Quantity:</div>
+                            <div class="col-md-2">
+                            <select class="form-select form-select-sm" id="qty-cart">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                            </div>
+                        </div>
+                            <br><br>
+
                         <button class="btn btn-secondary" value="{{ product.id }}" id="add-cart">Add to Cart</button>
                         <button class="btn btn-primary" style="margin-left: 20px;">view products</button>
                     </center>
@@ -43,6 +58,7 @@
                 url: "{% url 'cart_add' %}",
                 data: {
                     product_id: $('#add-cart').val(),
+                    product_qty: $('#qty-cart option:selected').text(),
                     csrfmiddlewaretoken: '{{ csrf_token }}',
                     action: 'post'
                 },
