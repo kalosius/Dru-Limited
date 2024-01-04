@@ -1,7 +1,9 @@
+from druu.models import Product
+
 class Cart():
     def __init__(self, request):
         self.session = request.session
-
+        self.cart = {}
         # get current session key if it exists
         cart = self.session.get('session_key')
 
@@ -22,3 +24,6 @@ class Cart():
             self.cart[product_id] = {'price': str(product.price)}
 
         self.session.modified = True
+
+    def __len__(self):
+        return len(self.cart)
