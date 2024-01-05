@@ -17,5 +17,5 @@ urlpatterns = [
     path('phones&accessories/', views.phones_and_accessories, name="phones&accessories"),
     path('product/<int:pk>', views.product, name="product"),
     path('category/<str:categories>', views.category, name='category'),
-path('category_summary/', views.category_summary, name="category_summary"),
+    path('category_summary/', views.category_summary, name="category_summary"),
 ]
