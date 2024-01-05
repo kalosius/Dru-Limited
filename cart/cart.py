@@ -75,3 +75,49 @@ class Cart():
 
         # return the looked up products
         return products
+    
+    def get_quants(self):
+        quantities = self.cart
+        return quantities
+    
+    def update(self, product, quantity):
+        product_id = str(product)
+        product_qty = int(quantity)
+        
+        # get cart
+        mycart = self.cart
+        # update dictionary/cart
+        mycart[product_id] = product_qty
+
+        self.session.modified = True
+
+        newupdatecart = self.cart
+        return newupdatecart 
+    
+    def delete(self, product):
+        product_id = str(product)
+        # Delete fro dictionary/cart
+        if product_id in self.cart:
+            del self.cart[product_id]
+
+        self.session.modified = True
+
+
+
+    # cart totals
+    def cart_total(self):
+        # get product IDs
+        product_ids = self.cart.keys()
+        # look up those keys in our database model
+        products = Product.objects.filter(id__in=product_ids)
+        # Get quantities
+        quantities = self.cart
+        # start counting from zero
+        total = 0
+        for key, value in quantities.items():
+            # Converting key string into integers since its math
+            key = int(key)
+            for product in products:
+                if product.id == key:
+                    total = total + (product.price * value)
+        return total

@@ -17,7 +17,7 @@
             
             {% if cart_products %}
             {% for product in cart_products %}
-                <div class="card mb-3" style="max-width: 540px;">
+                <div class="card mb-3" style="max-width: 1200px;">
                     <div class="row g-0">
                         <div class="col-md-4">
                             <img src="{{ product.image.url }}" class="img-fluid rounded-start" alt="">
@@ -28,19 +28,126 @@
                                 <h5 class="card-title">{{ product.title }}</h5>
                                 <p class="card-text" >This is a wider card with some content, supporting all the products in that you are 100% nterested in. Check in for the best prices ever</p>
                                 <h2 class="card-text" >{{ product.price }}/=</h2>
+                                <br><br>
+
+                                <div class="row justify-content-center">
+                                    <div class="col-md-2">Quantity:</div>
+                                    <div class="col-md-2">
+                                    <select class="form-select form-select-sm" id="select{{product.id}}">
+                                        
+                                            {% for key, value in quantities.items %}
+                                                {% if key == product.id|slugify %}
+                                                    <option selected>{{ value }}</option>
+                                                {% endif %}
+                                            {% endfor %}
+                                        
+
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                    </select>
+                                    </div>
+                                </div>
+                    
+                    
+                                <br><br>
+                                <a href="{% url 'home' %}" class="btn btn-secondary">Home</a>
+
+                                <button type="button" data-index="{{product.id}}" class="btn btn-secondary update-cart">Update</button>
+                                <button type="button" data-index="{{product.id}}" class="btn btn-danger delete-product">Remove</button>
+                                
+                                <br><br>
                                 <button  class="btn btn-primary" style="margin-left: 20px;" >view products</button>
                             </center>
                             </div>
                         </div>
                     </div>
                 </div>
+                {% endfor %}
+                <h3>Total: {{ totals }} Ugx  </h3>
+                <br><br><br><br><br><br><br> 
+                {% else %}
+                There's Nothing In Your Cart...
+                <br><br><br><br><br><br><br><br><br><br><br><br>
+                {% endif %}
+                <br><br>
             </div>
+
+        
+<script>
+    //Update cart
+    // check if button is pressed
+    $(document).on('click', '.update-cart', function(e){
+        e.preventDefault();
+        //Grab the product id
+        var productid = $(this).data('index');
+        $.ajax({
+            type: 'POST',
+            url: "{% url 'cart_update' %}",
+            data: {
+                product_id: $(this).data('index'),
+                product_qty: $('#select' + productid + ' option:selected').text(),
+                csrfmiddlewaretoken: '{{ csrf_token }}',
+                action: 'post'
+
+            },
+
+                success: function (json) {
+                    // //console.log(json);
+                    // document.getElementById('cart_quantity').innerHTML  = json.qty //you can use textContent = json.qty
+                    location.reload();
+                },
+
+                error: function (xhr, errmsg, err) {
+
+                }
+
+            }); 
+
+
+
+        });
+
+
+    //delete item from cart
+    // check if button is pressed
+    $(document).on('click', '.delete-product', function(e){
+        e.preventDefault();
+        //Grab the product id
+        //var productid = $(this).data('index');
+        $.ajax({
+            type: 'POST',
+            url: "{% url 'cart_delete' %}",
+            data: {
+                product_id: $(this).data('index'),
+                csrfmiddlewaretoken: '{{ csrf_token }}',
+                action: 'post'
+
+            },
+
+                success: function (json) {
+                    // //console.log(json);
+                    // document.getElementById('cart_quantity').innerHTML  = json.qty //you can use textContent = json.qty
+                    location.reload();
+                },
+
+                error: function (xhr, errmsg, err) {
+
+                }
+
+            }); 
+
+
+
+        });
+        </script>
+
+        
             
-            {% endfor %}
-            {% else %}
-            There's Nothing In Your Cart...
-            <br><br><br><br><br><br><br><br><br><br><br><br>
-            {% endif %}
-        </div>
+
+            
+
 
 {% endblock %}

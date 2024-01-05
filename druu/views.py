@@ -4,7 +4,14 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from . models import Product, Category
 
-# Create your views here.
+def category_summary(request):
+    categories = Category.objects.all()
+    return render(request, 'products/category_summary.html', {"categories":categories})
+
+
+
+
+
 def product(request,pk):
     product = Product.objects.get(id=pk)
     return render(request, 'products/product.html', {'product':product})
