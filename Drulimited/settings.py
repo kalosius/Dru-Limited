@@ -12,6 +12,7 @@ SECRET_KEY = 'django-insecure-e^lj7@%6@9qk6*1s+)=co04d*1tb_-^_a4e4tbjcxceq_31qd9
 DEBUG = True
 
 ALLOWED_HOSTS = ["dru-interiors.onrender.com","localhost", "127.0.0.1"]
+# working successfully
 
 
 # Application definition
