@@ -1,0 +1,43 @@
+/* Add this to your existing style.css file or create a new one */
+
+/* Default styles for larger screens */
+.nav-list {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-unorder {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-unorder li {
+    margin-right: 20px;
+}
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+    .nav-unorder {
+        display: none; /* Initially hide the nav items on smaller screens */
+        flex-direction: column;
+    }
+
+    .nav-unorder.show {
+        display: flex; /* Display the nav items when the "show" class is added */
+    }
+
+    .nav-unorder li {
+        margin-bottom: 10px;
+        margin-right: 0;
+    }
+
+    .toggle-button {
+        display: block;
+        margin-top: 10px;
+    }
+
+    /* Add any additional styles for smaller screens here */
+}
