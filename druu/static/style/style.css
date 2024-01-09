@@ -1,39 +1,36 @@
+/* default for smaller screen */
+
 *{
     margin: 0;
     padding: 0;
 }
 
-.nav-list {
-    width: 100%;
-    text-align: center;
-    display: flex;
-    justify-content: space-between;
-    padding: 10px;
-    background-color: #333;
-    color: #fff;
-    font-family: Arial, sans-serif;
-}
 
 nav ul {
     display: none;
 }
 
+/* menu button */
 #toggle {
     margin-right: 30px;
     background-color: #333;
     color: #fff;
     border: none;
+    border-radius: 50px;
+    transition: all .5s;
 
 }
 
 .nav-list img {
     width: 30px;
-    padding-top: 10px;
+    /* padding-top: 10px; */
     padding-right: 10px;
     
 }
 
+/* going to higher screen */
 @media only screen and (min-width: 768px){
+    
     .nav-list {
         width: 100%;
         text-align: center;

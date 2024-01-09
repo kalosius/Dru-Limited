@@ -3,7 +3,10 @@
 
     <!-- Header -->
     <br><br>
-        <h1>{{ category }}</h1>
+    <div class="container">
+        <center><strong><h1>{{ category }}</h1></strong> 
+        </center>
+    </div>
     </header>
     {% for product in products %}
     <div class="container">
@@ -16,7 +19,7 @@
                     <div class="card-body">
                         <center>
                         <h5 class="card-title">{{ product.title }}</h5>
-                        <p class="card-text" >This is a wider card with some content, supporting all the products in that you are 100% nterested in. Check in for the best prices ever</p>
+                        <p class="card-text" >Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus aliquam voluptas maiores dignissimos, nostrum rem. Laboriosam doloribus iste magni voluptatibus repudiandae, ut voluptates omnis sint sequi suscipit placeat id provident.</p>
                         <h2 class="card-text" >{{ product.price }}/=</h2>
                         <!-- <button class="btn btn-secondary" value="{{ product.id }}" id="add-cart">Add to Cart</button> -->
                         <button class="btn " style="margin-left: 20px;"><a><div><a class="btn btn-secondary btn-outline-light mt-auto"
