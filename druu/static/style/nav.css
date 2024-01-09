@@ -1,6 +1,7 @@
 /* Add this to your existing style.css file or create a new one */
 
 /* Default styles for larger screens */
+
 .footer-edit{
     position: absolute;
     /* bottom: 0;   this doesnt diplay anything*/
@@ -8,6 +9,7 @@
     /* height: auto; Adjust this value to match the height of your footer */
     /* background-color: #f4f4f4; */
 }
+
 
 
 .nav-list {
@@ -29,12 +31,12 @@
    border-radius: 10px;
    padding: 10px;
 }
+
 /* Media query for smaller screens */
 @media (max-width: 768px) {
     .nav-unorder {
-        /* Display the nav items from the side on smaller screens */
-        flex-direction: column; /* Set to column to stack items vertically */
-        display: table-row;
+        display: none; /* Initially hide the nav items on smaller screens */
+        flex-direction: column; /*  nav list items*/
     }
 
     .nav-unorder.show {
