@@ -2,7 +2,7 @@
 
 .footer-edit{
     position: absolute;
-    /* bottom: 0;   this doesnt diplay anything*/
+    /* bottom: auto;   */
     width: 100%;
     /* height: auto; Adjust this value to match the height of your footer */
     /* background-color: #f4f4f4; */
@@ -61,9 +61,6 @@
         color: #fff;
 
     }
-
-
-
 
 
     /* Add any additional styles for smaller screens here */
