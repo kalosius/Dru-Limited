@@ -1,7 +1,32 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+<!-- style for the search bar -->
+<style>
+      .search-container {
+            display: flex;
+            margin-top: 10px;
+            width: 400px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            overflow: hidden;
+        }
 
+        .search-input {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            outline: none;
+        }
+
+        .search-button {
+            padding: 10px;
+            background-color: #4b7c4c;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }   
+</style>
 <!-- Header -->
 <header class="bg-dark py-5">
     <div class="container px-4 px-lg-5 my-5">
@@ -11,6 +36,15 @@
         </div>
     </div>
 </header>
+<!-- Searching form -->
+<center>
+    <div class="container">
+        <div class="search-container">
+            <input type="text" class="search-input" placeholder="Search for products......">
+            <button class="search-button"  id="search-btn"  onclick="search()">Search</button>
+        </div>
+    </div>
+</center>
 <!-- Section-->
 <section class="py-5">
     <div class="container px-4 px-lg-5 mt-5">
@@ -43,5 +77,12 @@
             </div>
         </div>
         <br><br><br><b></b>
+
+        <script>
+            function search() {
+                // Add your search logic here
+                alert("Search functionality to be implemented.");
+            }
+        </script>
 
 {% endblock %}

@@ -37,7 +37,7 @@
                         </div>
                             <br><br>
 
-                        <button class="btn btn-secondary" value="{{ product.id }}" id="add-cart">Add to Cart</button>
+                        <button class="btn btn-secondary" value="{{ product.id }}" id="add-cart" onclick="search()">Add to Cart</button>
                         <button class="btn btn-primary" style="margin-left: 20px;">view products</button>
                     </center>
                     </div>
@@ -86,6 +86,11 @@
         });
 
 
+        // Changing button text when clicked
+        function search(){
+            alert('Added Successfully! Go to cart to checkout...');
+            document.getElementById('add-cart').innerHTML = 'Added';
+        };
 
     </script>
 
