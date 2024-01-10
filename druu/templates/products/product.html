@@ -9,6 +9,12 @@
         /* body{
             /* background-color: #333; 
         } */
+
+        #add-cart.clicked{
+            background-color: rgb(226, 203, 159);
+            border: none;
+        }
+
     </style>
     <div class="container">
         <div class="card mb-3" style="max-width: 1200px;">
@@ -37,7 +43,7 @@
                         </div>
                             <br><br>
 
-                        <button class="btn btn-secondary" value="{{ product.id }}" id="add-cart" onclick="search()">Add to Cart</button>
+                        <button class="btn btn-secondary butn" value="{{ product.id }}" id="add-cart" onclick="search()">Add to Cart</button>
                         <button class="btn btn-primary" style="margin-left: 20px;">view products</button>
                     </center>
                     </div>
@@ -89,8 +95,12 @@
         // Changing button text when clicked
         function search(){
             alert('Added Successfully! Go to cart to checkout...');
-            document.getElementById('add-cart').innerHTML = 'Added';
-        };
+           var butonn = document.getElementById('add-cart');
+           butonn.classList.add('clicked');  //this is the css class in #add-cart.clicked
+           butonn.innerHTML = 'Added';
+        }; 
+
+        
 
     </script>
 
