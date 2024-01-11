@@ -35,15 +35,18 @@
 }
 
 /* going to smaller screens */
-/* Media query for smaller screens */
-@media (max-width: 768px) {
-    .nav-unorder {
+/* Media query for smaller screens 
+form 411 t0 767px
+
+ */
+@media only screen and (max-width: 767px) {
+    .nav-unorder { 
         display: none; /* Initially hide the nav items on smaller screens */
-        flex-direction: column; /*  nav list items*/
-    }
+        flex-direction: column;  /*nav list items*/ 
+      } 
 
     .nav-unorder.show {
-        display: flex; /* Display the nav items when the "show" class is added */
+        display: flex;  /*Displaythe nav items when the "show" class is added */
     }
 
     .nav-unorder li {
@@ -62,6 +65,15 @@
 
     }
 
-
+}
     /* Add any additional styles for smaller screens here */
+
+
+
+
+/* Smallest screens */
+@media only screen and (max-width: 410px) {
+    /* body{
+        /* background-color: red !important;
+    } */
 }

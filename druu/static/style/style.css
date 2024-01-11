@@ -30,6 +30,7 @@ nav ul {
 
 
 /* going to higher screen */
+/* starting from 768 and above 1024 */
 @media only screen and (min-width: 768px){
     
     .nav-list {
@@ -63,7 +64,8 @@ nav ul {
 }
 
 
-@media only screen and (min-width: 1000px){
+/* larger screens */
+@media only screen and (min-width: 1025px){
     nav ul {
         padding: 10px;
         margin: 0 30px;
