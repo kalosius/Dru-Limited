@@ -1,13 +1,5 @@
 /* Default styles for larger screens */
 
-.footer-edit{
-    position: absolute;
-    /* bottom: auto;   */
-    width: 100%;
-    /* height: auto; Adjust this value to match the height of your footer */
-    /* background-color: #f4f4f4; */
-}
-
 
 .nav-list {
     display: flex;
@@ -35,6 +27,14 @@
 }
 
 
+/* footer */
+.footer-edit{
+    position: absolute;
+    /* bottom: auto;   */
+    width: 100%;
+    /* height: auto; Adjust this value to match the height of your footer */
+    /* background-color: #f4f4f4; */
+}
 
 
 
@@ -81,7 +81,9 @@ form 411 t0 767px
     /* body{
         /* background-color: red !important;
     } */
-    nav ul {
-        /* moving the whole thing*/
-    }
+    /* ul.nav-unorder.show li{
+       /* margin: 100px 0px;  display: inline-flex;
+        */
+        
+    /* } */ 
 }
