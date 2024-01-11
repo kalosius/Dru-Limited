@@ -34,6 +34,11 @@
    padding: 10px;
 }
 
+
+
+
+
+
 /* going to smaller screens */
 /* Media query for smaller screens 
 form 411 t0 767px
@@ -76,4 +81,7 @@ form 411 t0 767px
     /* body{
         /* background-color: red !important;
     } */
+    nav ul {
+        /* moving the whole thing*/
+    }
 }

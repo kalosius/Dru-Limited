@@ -21,6 +21,12 @@ nav ul {
 
 }
 
+/* dru enterprises title for all screens */
+.nav-list h1{
+    font-size: 25px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif !important;
+}
+
 .nav-list img {
     width: 30px;
     /* padding-top: 10px; */
