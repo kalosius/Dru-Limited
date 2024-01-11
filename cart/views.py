@@ -4,7 +4,7 @@ from .cart import Cart
 from druu.models import Product
 from django.http import JsonResponse
 from django.http import HttpResponse
-
+from django.contrib import messages
 # Create your views here.
 
 def cart_summary(request):
@@ -39,7 +39,7 @@ def cart_add(request):
         # return a JSON response
         # response = JsonResponse({'Product Name': product.name})
         response = JsonResponse({'qty': cart_quantity})
-
+        messages.success(request, 'Item Added To Shopping Cart!')
         return response
 
 # delete item from cart
@@ -50,6 +50,7 @@ def cart_delete(request):
         # calling delete function from the cart
         cart.delete(product=product_id)
         response = JsonResponse({'product':product_id})
+        messages.success(request, 'Item Deleted From Shopping Cart!')
         return response 
 
 
@@ -63,6 +64,7 @@ def cart_update(request):
         cart.update(product=product_id, quantity=product_qty)          #################   #check here incase of error
 
         response = JsonResponse({'qty':product_qty})
+        messages.success(request, 'Cart Updated')
         return response 
         # return redirect('cart_summary')
 

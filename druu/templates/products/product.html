@@ -77,8 +77,9 @@
                 },
 
                 success: function (json) {
-                    //console.log(json);
-                    document.getElementById('cart_quantity').innerHTML  = json.qty //you can use textContent = json.qty
+                        //console.log(json);
+                        document.getElementById('cart_quantity').innerHTML  = json.qty 
+                    location.reload();
                 },
 
                 error: function (xhr, errmsg, err) {
