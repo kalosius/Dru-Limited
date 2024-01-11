@@ -72,18 +72,11 @@ form 411 t0 767px
 
 }
     /* Add any additional styles for smaller screens here */
-
+ 
 
 
 
 /* Smallest screens */
 @media only screen and (max-width: 410px) {
-    /* body{
-        /* background-color: red !important;
-    } */
-    /* ul.nav-unorder.show li{
-       /* margin: 100px 0px;  display: inline-flex;
-        */
-        
-    /* } */ 
+    
 }
