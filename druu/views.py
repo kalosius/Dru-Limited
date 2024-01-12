@@ -123,3 +123,10 @@ def phones_and_accessories(request):
 
 # def sneakers(request):
 #     return render(request, 'products/sneakers.html')
+
+
+
+
+
+def checkout(request):
+    return render(request, 'authentication/checkout.html')
