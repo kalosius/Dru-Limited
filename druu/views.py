@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.contrib import messages
+from django.contrib import messages, auth
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from . models import Product, Category
@@ -68,7 +68,38 @@ def logout_user(request):
 
 
 def registration(request):
-    return render(request, "authentication/register.html")
+    if request.method == 'POST':
+        # get form values
+        username = request.POST['username']
+        email = request.POST['email']
+        password1 = request.POST['password1']
+        password2= request.POST['password2']
+
+        # check if passwords match
+        if password1 == password2:
+            # check username
+            if User.objects.filter(username=username).exists():
+                messages.success(request, 'Username already exists')
+                return redirect('register')
+            else:
+                if User.objects.filter(email=email).exists():
+                    messages.success(request, 'Email already exists')
+                    return redirect('register')
+                else:
+                    # looks good
+                    user = User.objects.create_user(username=username, email=email, password=password1)
+                    # login after register
+                    auth.login(request, user)
+                    messages.success(request, 'You are now logged in')
+                    # return redirect('index')
+                    user.save()
+                    # messages.success(request, 'You are now registered and can log in')
+                    return redirect('home')
+        else:
+            messages.success(request, 'Passwords do not match')
+            return redirect('register')
+    else:
+        return render(request, "authentication/register.html")
 
 # Products pages
 # def clothes(request):
