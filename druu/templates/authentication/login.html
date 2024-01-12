@@ -2,16 +2,52 @@
 {% load static %}
 {% block content %}
 <br><br>
+        
     <div class="container">
-        <form method="POST" action="{% url 'login' %}">
+            <!-- <form method="POST" action="{% url 'login' %}">
+                {% csrf_token %}
+                <input type="text" name="username" placeholder="Username">
+                <br><br>
+                <input type="password" name="password" placeholder="Enter Password">
+                <br><br>
+                <button type="submit" class="btn btn-secondary">Login</button>
+            </form>
+        </div> -->
+
+            <center><h1>Login DruEnterprises</h1>
+            background image loading...</center>
+           
+            <br>
+        <form class="mx-1 mx-md-4" method="POST" action="{% url 'login' %}">
             {% csrf_token %}
-            <input type="text" name="username" placeholder="Username">
-            <br><br>
-            <input type="password" name="password" placeholder="Enter Password">
-            <br><br>
-            <button type="submit" class="btn btn-secondary">Login</button>
-        </form>
+            <div class="d-flex flex-row align-items-center mb-4">
+                <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                <div class="form-outline flex-fill mb-0">
+                <label class="form-label" for="form3Example1c"></label>
+                <input type="text" id="form3Example1c" class="form-control" placeholder="Username" name="username" Required />
+                </div>
+            </div>
+
+            <div class="d-flex flex-row align-items-center mb-4">
+                <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
+                <div class="form-outline flex-fill mb-0">
+                <label class="form-label" for="form3Example4c"></label>
+                <input type="password" id="form3Example4c" class="form-control" name="password" placeholder="Password" Required/>
+                </div>
+            </div>
+
+            <div class="form-check d-flex justify-content-center mb-5">
+                <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3c" />
+                <label class="form-check-label" for="form2Example3">
+                    Remember me
+                </label>
+            </div>
+
+            <center><div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                <button type="submit" class="btn btn-primary btn-lg" style="padding: 5px 110px;">Login</button>
+            </div></center>
     </div>
+
 <br><br> <br> <br> <br> <br> <br> <br> <br> <br><br> <br> <br> <br> <br> <br>  <br><br> 
 
 {% endblock %}
