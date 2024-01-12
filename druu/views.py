@@ -51,7 +51,8 @@ def signin(request):
         user = authenticate(username=username, password=password)
         if user is not None:
             login(request, user)
-            messages.success(request, f'Welcome Back {username}!')
+            capitalized_username = username.capitalize()
+            messages.success(request, f'Welcome Back {capitalized_username}!')
             return redirect('home')
         else:
             messages.success(request, 'Invalid login credentials')
@@ -90,7 +91,7 @@ def registration(request):
                     user = User.objects.create_user(username=username, email=email, password=password1)
                     # login after register
                     auth.login(request, user)
-                    messages.success(request, 'You are now logged in')
+                    messages.success(request, f'Hi {username}! You are now logged in...')
                     # return redirect('index')
                     user.save()
                     # messages.success(request, 'You are now registered and can log in')
