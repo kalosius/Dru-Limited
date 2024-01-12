@@ -52,7 +52,7 @@ def signin(request):
         if user is not None:
             login(request, user)
             capitalized_username = username.capitalize()
-            messages.success(request, f'Welcome Back {capitalized_username}!')
+            messages.success(request, f'Welcome back {capitalized_username}!')
             return redirect('home')
         else:
             messages.success(request, 'Invalid login credentials')
@@ -88,10 +88,11 @@ def registration(request):
                     return redirect('register')
                 else:
                     # looks good
+                    capitalized_username = username.capitalize()
                     user = User.objects.create_user(username=username, email=email, password=password1)
                     # login after register
                     auth.login(request, user)
-                    messages.success(request, f'Hi {username}! You are now logged in...')
+                    messages.success(request, f'Hi {capitalized_username}! Welcome to DruEnterprises...')
                     # return redirect('index')
                     user.save()
                     # messages.success(request, 'You are now registered and can log in')
