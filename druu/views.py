@@ -3,6 +3,7 @@ from django.contrib import messages, auth
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from . models import Product, Category
+from cart.cart import Cart
 
 def category_summary(request):
     categories = Category.objects.all()
@@ -129,4 +130,8 @@ def phones_and_accessories(request):
 
 
 def checkout(request):
-    return render(request, 'authentication/checkout.html')
+    cart = Cart(request)
+    cart_products = cart.get_prods
+    quantities = cart.get_quants
+    totals = cart.cart_total()
+    return render(request, 'authentication/checkout.html', {'cart_products':cart_products, 'quantities':quantities, 'totals':totals})

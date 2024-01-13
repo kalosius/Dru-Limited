@@ -13,21 +13,33 @@
         <p class="lead">checkout Page to be implemented</p>
       </div>
 
+      <!-- cart -->
       <div class="row">
         <div class="col-md-4 order-md-2 mb-4">
           <h4 class="d-flex justify-content-between align-items-center mb-3">
             <span class="text-muted">Your cart</span>
             <span class="badge badge-secondary badge-pill">3</span>
           </h4>
+
+          {% if cart_products %}
+            {% for product in cart_products %}
           <ul class="list-group mb-3">
             <li class="list-group-item d-flex justify-content-between lh-condensed">
               <div>
-                <h6 class="my-0">Product name</h6>
+                {% for key, value in quantities.items %}
+                  {% if key == product.id|slugify %}
+                      <option selected>{{ value }}</option>
+                  {% endif %}
+                {% endfor %}
+                <h6 class="my-0">{{ product.name }}</h6>
                 <small class="text-muted">Brief description</small>
               </div>
-              <span class="text-muted">15000shs.</span>
+              <span class="text-muted">{{ product.price }}</span>
             </li>
-            <li class="list-group-item d-flex justify-content-between lh-condensed">
+             
+            {% endfor %}
+            {% endif %}
+            <!-- <li class="list-group-item d-flex justify-content-between lh-condensed">
               <div>
                 <h6 class="my-0">Second product</h6>
                 <small class="text-muted">Brief description</small>
@@ -40,7 +52,7 @@
                 <small class="text-muted">Brief description</small>
               </div>
               <span class="text-muted">2000shs.</span>
-            </li>
+            </li> -->
             <li class="list-group-item d-flex justify-content-between bg-light">
               <div class="text-success">
                 <h6 class="my-0">Promo code</h6>
@@ -49,10 +61,12 @@
               <span class="text-success">-5000shs</span>
             </li>
             <li class="list-group-item d-flex justify-content-between">
-              <span>Total (USD)</span>
-              <strong>20000shs</strong>
+              <span>Total (Ugx)</span>
+              <strong>{{ totals }}shs</strong>
             </li>
           </ul>
+          
+         
 
           <form class="card p-2">
             <div class="input-group">

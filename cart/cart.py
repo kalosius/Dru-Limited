@@ -121,3 +121,5 @@ class Cart():
                 if product.id == key:
                     total = total + (product.price * value)
         return total
+
+        
