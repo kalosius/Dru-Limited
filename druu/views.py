@@ -4,18 +4,18 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from . models import Product, Category
 from cart.cart import Cart
+from django.contrib.auth.decorators import login_required
+
 
 def category_summary(request):
     categories = Category.objects.all()
     return render(request, 'products/category_summary.html', {"categories":categories})
 
 
-
-
-
 def product(request,pk):
     product = Product.objects.get(id=pk)
     return render(request, 'products/product.html', {'product':product})
+
 
 def category(request,categories):
     # categories = categories.replace('-', '') #making the url name with space replaced with a hyphen
@@ -36,11 +36,14 @@ def home(request):
     products = Product.objects.all()
     return render(request, 'home.html', {'products':products,})
 
+
 def about(request):
     return render(request, 'about.html')
 
+
 def contact(request):
     return render(request, 'contact.html')
+
 
 # for authentication
 def signin(request):
@@ -60,13 +63,11 @@ def signin(request):
             return redirect('login')
     return render(request, 'authentication/login.html')
 
+
 def logout_user(request):
     logout(request)
     messages.success(request, 'You are now logged out!')
     return redirect('home')
-
-
-
 
 
 def registration(request):
@@ -108,25 +109,25 @@ def registration(request):
 # def clothes(request):
 #     return render(request, 'products/clothes.html')
 
+
 def furniture(request):
     return render(request, 'products/furniture.html')
+
 
 def gadgets(request):
     return render(request, 'products/gadgets.html')
 
+
 def pets(request):
     return render(request, 'products/pets.html')
+
 
 def phones_and_accessories(request):
     return render(request, 'products/phones.html')
 
 
-
 # def sneakers(request):
 #     return render(request, 'products/sneakers.html')
-
-
-
 
 
 def checkout(request):
@@ -134,4 +135,6 @@ def checkout(request):
     cart_products = cart.get_prods
     quantities = cart.get_quants
     totals = cart.cart_total()
+
+   
     return render(request, 'authentication/checkout.html', {'cart_products':cart_products, 'quantities':quantities, 'totals':totals})

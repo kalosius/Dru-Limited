@@ -2,6 +2,11 @@
 {% load static %}
 {% block content %}
 
+<style>
+    .payment-option{
+      display: none;
+    }
+</style>
 
 
 <body class="bg-light">
@@ -18,7 +23,7 @@
         <div class="col-md-4 order-md-2 mb-4">
           <h4 class="d-flex justify-content-between align-items-center mb-3">
             <span class="text-muted">Your cart</span>
-            <span class="badge badge-secondary badge-pill">3</span>
+            <span class="badge badge-secondary badge-pill">{{ value }}</span>
           </h4>
 
           {% if cart_products %}
@@ -39,20 +44,7 @@
              
             {% endfor %}
             {% endif %}
-            <!-- <li class="list-group-item d-flex justify-content-between lh-condensed">
-              <div>
-                <h6 class="my-0">Second product</h6>
-                <small class="text-muted">Brief description</small>
-              </div>
-              <span class="text-muted">8000shs.</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between lh-condensed">
-              <div>
-                <h6 class="my-0">Third item</h6>
-                <small class="text-muted">Brief description</small>
-              </div>
-              <span class="text-muted">2000shs.</span>
-            </li> -->
+            
             <li class="list-group-item d-flex justify-content-between bg-light">
               <div class="text-success">
                 <h6 class="my-0">Promo code</h6>
@@ -66,8 +58,7 @@
             </li>
           </ul>
           
-         
-
+          
           <form class="card p-2">
             <div class="input-group">
               <input type="text" class="form-control" placeholder="Promo code" wfd-id="id0">
@@ -77,6 +68,8 @@
             </div>
           </form>
         </div>
+
+        <!-- Person Details -->
         <div class="col-md-8 order-md-1">
           <h4 class="mb-3">Billing address</h4>
           <form class="needs-validation" novalidate="">
@@ -173,38 +166,59 @@
                 </div>
               </div>
             </div>
+
+            <!-- shipping address starts here -->
             <hr class="mb-4">
             <div class="custom-control custom-checkbox">
               <input type="checkbox" class="custom-control-input" id="same-address" wfd-id="id8">
               <label class="custom-control-label" for="same-address">Shipping address is the same as my billing address</label>
             </div>
+          
             <div class="custom-control custom-checkbox">
               <input type="checkbox" class="custom-control-input" id="save-info" wfd-id="id9">
               <label class="custom-control-label" for="save-info">Save this information for next time</label>
             </div>
             <hr class="mb-4">
 
+             <!-- payment options -->
             <h4 class="mb-3">Payment</h4>
 
             <div class="d-block my-3">
-              <div class="custom-control custom-radio">
-                <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked="" required="" wfd-id="id10">
+              <!-- <div class="custom-control custom-radio">
+                <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked="" required="" wfd-id="id10" value="creditcard" onclick="togglePaymentOption('creditcard')">
                 <label class="custom-control-label" for="credit">Credit card</label>
-              </div>
+              </div> -->
+
               <div class="custom-control custom-radio">
-                <input id="debit" name="paymentMethod" type="radio" class="custom-control-input" required="" wfd-id="id11">
+                <input id="debit" name="paymentMethod" type="radio" class="custom-control-input" required="" wfd-id="id11" value="debit" onclick="togglePaymentOption('debit')">
                 <label class="custom-control-label" for="debit">Debit card</label>
               </div>
+
               <div class="custom-control custom-radio">
-                <input id="paypal" name="paymentMethod" type="radio" class="custom-control-input" required="" wfd-id="id12">
+                <input id="paypal" name="paymentMethod" type="radio" class="custom-control-input" required="" wfd-id="id12" value="paypal" onclick="togglePaymentOption('paypal')">
                 <label class="custom-control-label" for="paypal">Paypal</label>
               </div>
+              
               <div class="custom-control custom-radio">
-                <input id="paypal" name="paymentMethod" type="radio" class="custom-control-input" required="" wfd-id="id12">
+                <input id="mobile" name="paymentMethod" type="radio" class="custom-control-input" required="" wfd-id="id12" value="mobile" onclick="togglePaymentOption('mobile')">
+                <label class="custom-control-label" for="paypal">Mobile Money</label>
+              </div>
+              
+              <div class="custom-control custom-radio">
+                <input id="cash" name="paymentMethod" type="radio" class="custom-control-input" required="" wfd-id="id12" value="cash" onclick="togglePaymentOption('cash')">
                 <label class="custom-control-label" for="paypal">Cash on Delivery</label>
               </div>
+
+
             </div>
-            <div class="row">
+
+            <!-- credit options -->
+            <div id="creditcardOption" class="payment-option">
+              Credit options Go here
+          </div>
+
+            <!-- debit options -->
+            <div id="debitOption" class="row payment-option">
               <div class="col-md-6 mb-3">
                 <label for="cc-name">Name on card</label>
                 <input type="text" class="form-control" id="cc-name" placeholder="" required="" wfd-id="id13">
@@ -220,23 +234,42 @@
                   Credit card number is required
                 </div>
               </div>
-            </div>
-            <div class="row">
-              <div class="col-md-3 mb-3">
-                <label for="cc-expiration">Expiration</label>
-                <input type="text" class="form-control" id="cc-expiration" placeholder="" required="" wfd-id="id15">
-                <div class="invalid-feedback">
-                  Expiration date required
+              <div class="row">
+                <div class="col-md-3 mb-3">
+                  <label for="cc-expiration">Expiration</label>
+                  <input type="text" class="form-control" id="cc-expiration" placeholder="" required="" wfd-id="id15">
+                  <div class="invalid-feedback">
+                    Expiration date required
+                  </div>
+                </div>
+                <div class="col-md-3 mb-3">
+                  <label for="cc-expiration">CVV</label>
+                  <input type="text" class="form-control" id="cc-cvv" placeholder="" required="" wfd-id="id16">
+                  <div class="invalid-feedback">
+                    Security code required
+                  </div>
                 </div>
               </div>
-              <div class="col-md-3 mb-3">
-                <label for="cc-expiration">CVV</label>
-                <input type="text" class="form-control" id="cc-cvv" placeholder="" required="" wfd-id="id16">
-                <div class="invalid-feedback">
-                  Security code required
-                </div>
-              </div>
             </div>
+            <!-- end of debit options -->
+
+            <!-- paypal -->
+            <div id="paypalOption" class="payment-option">
+              PayPal options Go here
+          </div>
+
+          <!-- cash -->
+          <div id="cashOption" class="payment-option">
+              Cash options Go here
+          </div>
+
+          <!-- mobile money -->
+          <div id="mobileOption" class="payment-option">
+            Mobile money options Go here
+          </div>
+          
+          
+
             <hr class="mb-4">
             <button class="btn btn-primary btn-lg btn-block" type="submit">Continue to checkout</button>
           </form>
@@ -282,6 +315,19 @@
           });
         }, false);
       })();
+    </script>
+
+    <!-- script for payment methods when selected -->
+    <script>
+      function togglePaymentOption(option){
+        var options = document.getElementsByClassName('payment-option');
+        for (var i = 0; i < options.length; i++){
+          options[i].style.display = "none";
+        }
+        
+        var selectedOption = document.getElementById(option + "Option");
+            selectedOption.style.display = "block";
+      }
     </script>
   
 
