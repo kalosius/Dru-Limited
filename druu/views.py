@@ -129,7 +129,7 @@ def phones_and_accessories(request):
 # def sneakers(request):
 #     return render(request, 'products/sneakers.html')
 
-
+# checkout page
 def checkout(request):
     cart = Cart(request)
     cart_products = cart.get_prods
@@ -138,3 +138,13 @@ def checkout(request):
 
    
     return render(request, 'authentication/checkout.html', {'cart_products':cart_products, 'quantities':quantities, 'totals':totals})
+
+
+# Searched items
+def search(request):
+    if request.method == "POST":
+        searched = request.POST['searched']
+        products = Product.objects.filter(name__contains = searched)
+        return render(request, 'search.html', {'searched':searched, 'products':products})
+    
+    return render(request, 'search.html', {})

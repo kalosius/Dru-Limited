@@ -48,6 +48,16 @@
         </form>
     </div>
 </center>
+
+{% if searched %}
+    <h1>Searched {{ searched }}</h1>
+    
+    {% for product in products  %}
+        {{ product }}
+    {% endfor %}
+        
+{% else %}
+    
 <!-- Section-->
 <section class="py-5">
     <div class="container px-4 px-lg-5 mt-5">
@@ -81,6 +91,7 @@
         </div>
         <br><br><br><b></b>
 
+        {% endif %}
         <script>
 
         </script>
