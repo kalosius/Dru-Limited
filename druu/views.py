@@ -7,8 +7,6 @@ from cart.cart import Cart
 from django.contrib.auth.decorators import login_required
 
 
-
-
 def category_summary(request):
     categories = Category.objects.all()
     return render(request, 'products/category_summary.html', {"categories":categories})

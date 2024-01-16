@@ -3,29 +3,39 @@
 {% block content %}
 <!-- style for the search bar -->
 <style>
-      .search-container {
-            display: flex;
-            margin-top: 10px;
-            width: 100% !important;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            overflow: hidden;
-        }
+    .search-container {
+        display: flex;
+        margin-top: 10px;
+        width: 100% !important;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        overflow: hidden;
+    }
 
-        .search-input {
-            flex: 1;
-            padding: 10px;
-            border: none;
-            outline: none;
-        }
+    .search-input {
+        flex: 1;
+        padding: 10px;
+        border: none;
+        outline: none;
+    }
 
-        .search-button {
-            padding: 10px;
-            background-color: #4b7c4c;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }   
+    .search-button {
+        padding: 10px;
+        background-color: #4b7c4c;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+
+    .card{
+        border: none !important;
+    }
+
+    .card:hover {
+        cursor: pointer;
+        width: 300px;
+        
+    }
 </style>
 <!-- Header -->
 <header class="bg-dark py-5">
@@ -43,57 +53,79 @@
             {% csrf_token %}
             <div class="search-container">
                 <input type="text" name="searched" class="search-input" placeholder="Search products">
-                <button class="search-button"  id="search-btn" >Search</button>
+                <button class="search-button" id="search-btn">Search</button>
             </div>
         </form>
     </div>
 </center>
 
 {% if searched %}
-    <h1>Searched {{ searched }}</h1>
-    
-    {% for product in products  %}
-        {{ product }}
-    {% endfor %}
-        
-{% else %}
-    
-<!-- Section-->
-<section class="py-5">
-    <div class="container px-4 px-lg-5 mt-5">
-        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-            {% for product in products %}
-            <div class="col mb-5">
-                <div class="card h-100">
-                    <!-- Product image -->
-                    <img class="card-img-top" src="{{ product.image.url }}" alt="{{ product.image }}" style="width: 100%; height: 200px; object-fit: cover;"/>
-                    <!-- Product details -->
+<center>
+    <h1>Products in {{ searched }}</h1>
+</center>
 
-                    <div class="card-body p-4">
-                        <div class="text-center">
-                            <!-- Product name-->
-                            <h5 class="fw-bolder">{{ product.name }}</h5>
-                            <!-- Product price-->
-                            {{ product.price }}/=
-                        </div>
+<div class="container px-4 px-lg-5 mt-5">
+    <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+        {% for product in products %}
+        <div class="col mb-5">
+            <div class="card h-100">
+                <!-- Product image -->
+                <img class="card-img-top" src="{{ product.image.url }}" alt="{{ product.image }}"
+                    style="width: 100%; height: 200px; object-fit: cover;" />
+                <!-- Product details -->
+
+                <div class="card-body p-4">
+                    <div class="text-center">
+                        <!-- Product name-->
+                        <h5 class="fw-bolder">{{ product.name }}</h5>
+                        <!-- Product price-->
+                        {{ product.price }}/=
                     </div>
-                    <!-- Product actions-->
-                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                        <div class="text-center"><a class="btn btn-outline-dark mt-auto"
-                                href="{% url 'product' product.id %}">View Product</a>
-                        </div>
+                </div>
+                <!-- Product actions-->
+                <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                    <div class="text-center"><a class="btn btn-outline-dark mt-auto"
+                            href="{% url 'product' product.id %}">View Product</a>
                     </div>
                 </div>
             </div>
-            {% endfor %}
-            <!-- end first image -->
+        </div>
+        {% endfor %}
+
+        {% else %}
+
+        <div class="container px-4 px-lg-5 mt-5">
+            <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+                {% for product in products %}
+                <div class="col mb-5">
+                    <div class="card h-100">
+                        <!-- Product image -->
+                        <img class="card-img-top" src="{{ product.image.url }}" alt="{{ product.image }}"
+                            style="width: 100%; height: 200px; object-fit: cover;" />
+                        <!-- Product details -->
+
+                        <div class="card-body p-4">
+                            <div class="text-center">
+                                <!-- Product name-->
+                                <h5 class="fw-bolder">{{ product.name }}</h5>
+                                <!-- Product price-->
+                                {{ product.price }}/=
+                            </div>
+                        </div>
+                        <!-- Product actions-->
+                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                            <div class="text-center"><a class="btn btn-outline-dark mt-auto"
+                                    href="{% url 'product' product.id %}">View Product</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                
+                <!-- end first image -->
             </div>
         </div>
-        <br><br><br><b></b>
-
         {% endif %}
-        <script>
-
-        </script>
-
+    </div>
+</div>
 {% endblock %}

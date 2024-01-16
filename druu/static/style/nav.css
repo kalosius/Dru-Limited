@@ -1,5 +1,14 @@
 /* Default styles for larger screens */
 
+.card{
+    border: none !important;
+}
+
+.card:hover {
+    cursor: pointer;
+    width: 300px;
+        
+}
 
 .nav-list {
     display: flex;
