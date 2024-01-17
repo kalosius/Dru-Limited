@@ -53,6 +53,7 @@
 form 411 t0 767px
 
  */
+
 @media only screen and (max-width: 767px) {
     .nav-unorder { 
         display: none; /* Initially hide the nav items on smaller screens */
@@ -92,6 +93,6 @@ form 411 t0 767px
 /* Smallest screens */
 @media only screen and (max-width: 410px) {
     .card:hover{
-        width: 180px;
+        width: 180px !important;
     }   
 }
