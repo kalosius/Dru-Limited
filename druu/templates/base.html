@@ -24,49 +24,48 @@
     <nav>
         <div class="nav-list">
             <h1 style="color: rgb(159, 185, 202);"><img src="{% static 'images/Dru-interiors.png' %} " alt="">DruEnterprises</h1>
-            <ul class="nav-unorder">
-                <li><a href="{% url 'home' %}">Home</a></li>
-                <li><a href="{% url 'category' 'Beddings' %}">Furniture</a></li>
-                
-                {% if user.is_authenticated %}
-                <li><a href="{% url 'category' 'Gadgets' %}">Gadgets</a></li>
-                <li><a href="{% url 'category' 'Phones' %}">phones</a></li>
-                <!-- <li><a href="">sneakers</a></li> -->
-                <li><a href="{% url 'category' 'Pets' %}">pets</a></li>
-                <li><a href="{% url 'about' %}">About</a></li>
-                <li><a href="{% url 'contact' %}">Contact</a></li>
-                <li><a class="dropdown-item" href="{% url 'category_summary' %}">All Products</a></li>
-                
-                <!-- nav -->
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Categories</a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="{% url 'category_summary' %}">All Products</a></li>
-                        <li><hr class="dropdown-divider" /></li>
-                        <li><a class="dropdown-item" href="{% url 'category' 'Beddings' %}">Furniture</a></li>
-                        <li><a class="dropdown-item" href="{% url 'category' 'Phones' %}">Phones</a></li>
-                        <li><a class="dropdown-item" href="{% url 'category' 'Pets' %}">Pets</a></li>
-                        <li><a class="dropdown-item" href="{% url 'category' 'Gadgets' %}">Gadgets</a></li>
-                        <li><a class="dropdown-item" href="{% url 'category' 'Soffer' %}">Soffer</a></li>
-                    </ul>
-                </li>
-                <!-- cart -->
-                <form class="d-flex">
-                    <a href="{% url 'cart_summary' %}" class="btn btn-outline-light">
-                        <i class="bi-cart-fill me-1"></i>
-                        Cart
-                        <span class="badge bg-dark text-white ms-1 rounded-pill" id="cart_quantity">{{ cart|length }}</span>
-                    </a>
-                </form>
-                
-                <li><a href="{% url 'logout' %}">Logout</a></li>
-                {% else %}
-                <li><a href="{% url 'login' %}">Login</a></li>
-                <li><a href="{% url 'register' %}">Register</a></li>
-                {% endif %}
-                <!-- endnav -->
-                
-            </ul>
+                <ul class="nav-unorder">
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                    <li><a href="{% url 'category' 'Beddings' %}">Furniture</a></li>
+                    
+                    {% if user.is_authenticated %}
+                    <!-- <li><a href="{% url 'category' 'Gadgets' %}">Gadgets</a></li> -->
+                    <li><a href="{% url 'category' 'Phones' %}">phones</a></li>
+                    <!-- <li><a href="">sneakers</a></li> -->
+                    <li><a href="{% url 'category' 'Pets' %}">pets</a></li>
+                    
+                    <!-- <li><a class="dropdown-item" href="{% url 'category_summary' %}">All Products</a></li>
+                    
+                    <nav>    
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Categories</a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="{% url 'category_summary' %}">All Products</a></li>
+                            <li><hr class="dropdown-divider" /></li>
+                            <li><a class="dropdown-item" href="{% url 'category' 'Beddings' %}">Furniture</a></li>
+                            <li><a class="dropdown-item" href="{% url 'category' 'Phones' %}">Phones</a></li>
+                            <li><a class="dropdown-item" href="{% url 'category' 'Pets' %}">Pets</a></li>
+                            <li><a class="dropdown-item" href="{% url 'category' 'Gadgets' %}">Gadgets</a></li>
+                            <li><a class="dropdown-item" href="{% url 'category' 'Soffer' %}">Soffer</a></li>
+                        </ul>
+                    </li> -->
+                    <!-- cart -->
+                    <form class="d-flex">
+                        <a href="{% url 'cart_summary' %}" class="btn btn-outline-light">
+                            <i class="bi-cart-fill me-1"></i>
+                            Cart
+                            <span class="badge bg-dark text-white ms-1 rounded-pill" id="cart_quantity">{{ cart|length }}</span>
+                        </a>
+                    </form>
+                    
+                    <li><a href="{% url 'logout' %}">Logout</a></li>
+                    {% else %}
+                    <li><a href="{% url 'login' %}">Login</a></li>
+                    <li><a href="{% url 'register' %}">Register</a></li>
+                    {% endif %}
+                    <!-- endnav -->
+                    
+                </ul>
             <button class="toggle-button" id="toggle">&#9776;Menu</button>              
         </div>
     </nav>
@@ -80,6 +79,8 @@
     </div>
     {% endfor %}
     {% endif %}
+
+    <!-- In the block content, its where other pages inherit the base from -->
     {% block content %}
 
     {% endblock %}
@@ -92,6 +93,8 @@
                 <li class="list-inline-item"><a href="#">Terms</a></li>
                 <li class="list-inline-item"><a href="#">Support</a></li>
             </ul>
+            <li><a href="{% url 'about' %}">About</a></li>
+            <li><a href="{% url 'contact' %}">Contact</a></li>
         </div>
         
         

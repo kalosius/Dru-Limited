@@ -7,7 +7,7 @@
 .card:hover {
     cursor: pointer;
     width: 300px;
-        
+    background-color: #eceaea;
 }
 
 .nav-list {
@@ -79,6 +79,10 @@ form 411 t0 767px
 
     }
 
+    .card:hover{
+        width: 250px;
+    }
+
 }
     /* Add any additional styles for smaller screens here */
  
@@ -87,5 +91,7 @@ form 411 t0 767px
 
 /* Smallest screens */
 @media only screen and (max-width: 410px) {
-    
+    .card:hover{
+        width: 180px;
+    }   
 }
