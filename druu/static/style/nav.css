@@ -6,7 +6,7 @@
 
 .card:hover {
     cursor: pointer;
-    width: 300px;
+    width: 230px;
     background-color: #eceaea;
 }
 
@@ -98,8 +98,7 @@ form 411 t0 767px
     
     .btn {
         padding: 7px !important;
-    }
-    
+    } 
 }
 
 
