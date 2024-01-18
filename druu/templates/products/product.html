@@ -18,7 +18,7 @@
         }
 
         #add-cart.clicked{
-            background-color: rgb(226, 203, 159);
+            background-color: rgb(22, 22, 21);
             border: none;
         }
 
@@ -52,7 +52,7 @@
 
                         <button class="btn btn-secondary butn" value="{{ product.id }}" id="add-cart" onclick="search()">Add to Cart</button>
                         
-                        <a class="btn btn-primary" href="{% url 'home' %}" style="margin-left: 20px;">Add More</a>
+                        <a class="btn btn-secondary" href="{% url 'home' %}" style="margin-left: 20px;">View More</a>
                     </center>
                     </div>
                 </div>
@@ -103,7 +103,7 @@
 
         // Changing button text when clicked
         function search(){
-            alert('Added Successfully! Go to cart to checkout...');
+            // alert('Added Successfully! Go to cart to checkout...');
            var butonn = document.getElementById('add-cart');
            butonn.classList.add('clicked');  //this is the css class in #add-cart.clicked
            butonn.innerHTML = 'Added';

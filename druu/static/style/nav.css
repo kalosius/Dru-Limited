@@ -6,7 +6,7 @@
 
 .card:hover {
     cursor: pointer;
-    width: 230px;
+    width: 250px !important;
     background-color: #eceaea;
 }
 
@@ -81,17 +81,36 @@ form 411 t0 767px
     }
 
     .card:hover{
-        width: 250px;
+        width: 250px !important;
     }
 
 }
-    /* Add any additional styles for smaller screens here */
  
 
-
-
 /* Smallest screens */
-@media only screen and (max-width: 406px){
+
+@media only screen and (max-width: 360px){
+    .card:hover{
+        width: 150px !important;
+    } 
+
+}
+
+@media only screen and (max-width: 375px ){
+    .card:hover{
+        width: 150px !important;
+    } 
+
+}
+
+@media only screen and (max-width: 390px ){
+    .card:hover{
+        width: 170px !important;
+    } 
+
+}
+
+@media only screen and (max-width: 414px){
     .card:hover{
         width: 170px !important;
     } 
@@ -100,6 +119,45 @@ form 411 t0 767px
         padding: 7px !important;
     } 
 }
+
+@media only screen and (max-width: 430px){
+    .card:hover{
+        width: 190px !important;
+    } 
+}
+
+
+
+/* For wider screens */
+@media only screen and (min-width: 768px ){
+    .card:hover{
+        width: 220px !important;
+    } 
+
+}
+
+@media only screen and (min-width: 820px ){
+    .card:hover{
+        width: 225px !important;
+    } 
+
+}
+
+@media only screen and (min-width: 1024px ){
+    .card:hover{
+        width: 260px !important;
+    } 
+
+}
+
+
+@media only screen and (min-width: 1280px ){
+    .card:hover{
+        width: 270px !important;
+    } 
+
+}
+
 
 
 

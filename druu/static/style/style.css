@@ -76,7 +76,7 @@ nav ul {
 
 
 /* larger screens */
-@media only screen and (min-width: 1025px){
+@media only screen and (min-width: 1024px){
     nav ul {
         padding: 10px;
         margin: 0 30px;
