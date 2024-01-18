@@ -27,7 +27,7 @@ def category(request,categories):
         return render(request, 'products/category.html', {'products':products, 'category':category})
 
     except: 
-        messages.success(request, "Category Doesn't exist...")
+        messages.warning(request, "Category Doesn't exist...")
         return redirect('home')
 
 
@@ -59,7 +59,7 @@ def signin(request):
             messages.success(request, f'Welcome back {capitalized_username}!')
             return redirect('home')
         else:
-            messages.success(request, 'Invalid login credentials')
+            messages.warning(request, 'Invalid login credentials')
             return redirect('login')
     return render(request, 'authentication/login.html')
 
@@ -86,7 +86,7 @@ def registration(request):
                 return redirect('register')
             else:
                 if User.objects.filter(email=email).exists():
-                    messages.success(request, 'Email already exists')
+                    messages.warning(request, 'Email already exists')
                     return redirect('register')
                 else:
                     # looks good
@@ -100,7 +100,7 @@ def registration(request):
                     # messages.success(request, 'You are now registered and can log in')
                     return redirect('home')
         else:
-            messages.success(request, 'Passwords do not match')
+            messages.warning(request, 'Passwords do not match')
             return redirect('register')
     else:
         return render(request, "authentication/register.html")
