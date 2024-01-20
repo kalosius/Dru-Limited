@@ -5,6 +5,25 @@ from django.contrib.auth import authenticate, login, logout
 from . models import Product, Category
 from cart.cart import Cart
 from django.contrib.auth.decorators import login_required
+from . forms import UpdateUserForm
+
+def update_user(request):
+    if request.user.is_authenticated:
+        current_user = User.objects.get(id=request.user.id)
+        user_form = UpdateUserForm(request.POST or None, instance=current_user)
+        if user_form.is_valid():
+            user_form.save()
+            login(request, current_user)
+            messages.success(request, 'User has been Updated!!')
+            return redirect("home")
+        return render(request, "authentication/update_user.html", {"user_form":user_form})
+    else:
+        messages.success(request, "You must be logged in to access the page!!")
+        return redirect("home")
+
+
+
+
 
 
 def category_summary(request):
