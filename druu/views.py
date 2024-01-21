@@ -22,10 +22,6 @@ def update_user(request):
         return redirect("home")
 
 
-
-
-
-
 def category_summary(request):
     categories = Category.objects.all()
     return render(request, 'products/category_summary.html', {"categories":categories})
