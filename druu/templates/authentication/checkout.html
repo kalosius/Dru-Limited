@@ -76,7 +76,8 @@
         <!-- Person Details -->
         <div class="col-md-8 order-md-1">
           <h4 class="mb-3">Billing address</h4>
-          <form class="needs-validation" novalidate="">
+          <form class="needs-validation" method="POST" action="{% url 'checkout' %}" novalidate="">
+            {% csrf_token %}
             <div class="row">
               <div class="col-md-6 mb-3">
                 <label for="firstName">First name</label>
@@ -162,13 +163,6 @@
                 </select>
                 <div class="invalid-feedback">
                   Select Your City
-                </div>
-              </div>
-              <div class="col-md-3 mb-3">
-                <label for="zip">Zip</label>
-                <input type="text" class="form-control" id="zip" placeholder="" required="" wfd-id="id7">
-                <div class="invalid-feedback">
-                  Zip code required.
                 </div>
               </div>
             </div>
@@ -338,5 +332,6 @@
   
 
 </body>
+<!-- refactor the page -->
 
 {% endblock %}
