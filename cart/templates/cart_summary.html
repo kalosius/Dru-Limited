@@ -3,8 +3,14 @@
 {% block content %}
 
 <style>
+    body{
+        background-color: #eee;
+    }
     .card:hover{
         width: fit-content !important;  /* makes the cart page card static on hover */
+    }
+    .card{
+        background-color: #eee;
     }
 
 </style>
@@ -73,7 +79,10 @@
                 </div>
                 {% endfor %}
                 <br>
-                <h3 style="float: left !important;">Total: {{ totals }} Ugx  </h3><a class="btn btn-secondary" href="{% url 'checkout' %}" style="margin-left: 30px;">Checkout</a>
+                <div class="container">
+                    <h3 style="float: left !important;"><strong>Total: {{ totals }} Ugx </strong>  </h3><a class="btn btn-secondary" href="{% url 'checkout' %}" style="margin-left: 30px;">Checkout</a> 
+                </div>
+                
                 <br>
                 <br><br><br><br><br><br><br> 
                 {% else %}
