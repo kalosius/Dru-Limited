@@ -1,6 +1,11 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+<style>
+    body{
+        background-color: #eee;
+    }
+</style>
 <br><br>    
     <div class="container">
             <!-- <form method="POST" action="{% url 'login' %}">
@@ -12,11 +17,13 @@
                 <button type="submit" class="btn btn-secondary">Login</button>
             </form>
         </div> -->
+        <br>
+            <div class="container">
+                <center><h1><strong>Welcome to DruEnterprises</strong></h1>
+                    <h5 style="font-weight: lighter;">Type your Username and password to log in or create account.</h5>
+                </center>
+            </div>
 
-            <center><h1>Login DruEnterprises</h1>
-            </center>
-           
-            <br>
         <form class="mx-1 mx-md-4" method="POST" action="{% url 'login' %}">
             {% csrf_token %}
             <div class="d-flex flex-row align-items-center mb-4">
@@ -35,19 +42,25 @@
                 </div>
             </div>
 
-            <div class="form-check d-flex justify-content-center mb-5">
+            <div class="form-check d-flex justify-content-center mb-5" style="">
                 <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3c" />
                 <label class="form-check-label" for="form2Example3">
                     Remember me
                 </label>
             </div>
+            <br>
 
             <center><div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                <button type="submit" class="btn btn-primary btn-lg" style="padding: 5px 110px;">Login</button>
+                <button type="submit" class="btn btn-secondary btn-lg" style="padding: 5px 135px !important;">Login</button>
             </div></center>
+            <br><br>
+            <div class="form-check d-flex justify-content-center mb-5">
+                <label class="form-check-label" for="form2Example3">
+                  If you don't have an account? <a href="{% url 'register' %}">Register here</a>
+                </label>
+              </div>
+
     </div>
 
-<br><br> <br> <br> <br> <br> <br> <br> <br> <br><br> <br> <br> <br> <br> <br>  <br><br> 
-<!-- Testing deployment service -->
-
+<br><br> <br> <br> <br> <br> <br> <br> <br>
 {% endblock %}
