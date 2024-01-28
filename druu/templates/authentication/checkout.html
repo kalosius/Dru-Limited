@@ -25,10 +25,13 @@
   </form> -->
 
     <div class="container">
-      <div class="py-5 text-center">
-        <img class="d-block mx-auto mb-4" src="{% static 'images/Dru-interiors (1).png' %}" alt="" width="25%" height="25%" style="margin-top: 0px;">
-        <h2>Checkout form</h2>
-        <p class="lead">checkout Page to be implemented</p>
+      
+      <div class="container">
+        <div class="py-5 text-center">
+          <img class="d-block mx-auto mb-4" src="{% static 'images/Dru-interiors (1).png' %}" alt="DruEnterprises" width="10%" height="10%" style="margin: 0px; float: left;">
+          <h2>Checkout Cart</h2>
+          <p class="lead">checkout Page to be implemented</p>
+        </div>
       </div>
 
       <!-- cart -->
@@ -43,10 +46,11 @@
             {% for product in cart_products %}
           <ul class="list-group mb-3">
             <li class="list-group-item d-flex justify-content-between lh-condensed">
+              <img src="{{ product.image.url }}" alt="Product" width="25%">
               <div>
                 {% for key, value in quantities.items %}
                   {% if key == product.id|slugify %}
-                      <option selected>{{ value }}</option>
+                      <option selected>Quantity: {{ value }}</option>
                   {% endif %}
                 {% endfor %}
                 <h6 class="my-0">{{ product.name }}</h6>
@@ -89,8 +93,8 @@
             {% csrf_token %}
             <div class="row">
               <div class="col-md-6 mb-3">
-                <label for="firstName">First name</label>
-                <input type="text" class="form-control" id="firstName" placeholder="" value="" required="" wfd-id="id1">
+                <label for="firstName">First Name</label>
+                <input type="text" class="form-control disable" id="firstName" placeholder="" value="" required="" wfd-id="id1">
                 <div class="invalid-feedback">
                   Valid first name is required.
                 </div>
@@ -237,10 +241,10 @@
                 </div>
               </div>
               <div class="col-md-6 mb-3">
-                <label for="cc-number">Credit card number</label>
+                <label for="cc-number">Debit card number</label>
                 <input type="text" class="form-control" id="cc-number" placeholder="" required="" wfd-id="id14">
                 <div class="invalid-feedback">
-                  Credit card number is required
+                  Debit card number is required
                 </div>
               </div>
               <div class="row">
@@ -283,14 +287,7 @@
         </div>
       </div>
 
-      <!-- <footer class="my-5 pt-5 text-muted text-center text-small">
-        <p class="mb-1">© 2017-2018 Company Name</p>
-        <ul class="list-inline">
-          <li class="list-inline-item"><a href="#">Privacy</a></li>
-          <li class="list-inline-item"><a href="#">Terms</a></li>
-          <li class="list-inline-item"><a href="#">Support</a></li>
-        </ul>
-      </footer> -->
+     
     </div>
 
     <!-- Bootstrap core JavaScript
@@ -339,6 +336,6 @@
   
 
 </body>
-<!-- refactor the page -->
+
 
 {% endblock %}
