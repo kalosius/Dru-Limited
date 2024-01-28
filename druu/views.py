@@ -5,7 +5,7 @@ from django.contrib.auth import authenticate, login, logout
 from . models import Product, Category, Order
 from cart.cart import Cart
 from django.contrib.auth.decorators import login_required
-from . forms import UpdateUserForm
+from . forms import UpdateUserForm, OrderForm
 from django.http import HttpResponse
 
 def update_user(request):
@@ -153,9 +153,16 @@ def checkout(request):
     totals = cart.cart_total()
 
     # Capturing user details
-   
-   
-    return render(request, 'authentication/checkout.html', {'cart_products':cart_products, 'quantities':quantities, 'totals':totals})
+    form = OrderForm()
+    if request.method == "POST":
+        form = OrderForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Order Made Successfully')
+        else:
+            messages.success(request, "There's an error in your form..!")
+            form = OrderForm()
+    return render(request, 'authentication/checkout.html', {'cart_products':cart_products, 'quantities':quantities, 'totals':totals, "form":form})
 
 
 # Searched items
