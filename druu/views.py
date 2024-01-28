@@ -2,10 +2,11 @@ from django.shortcuts import render, redirect
 from django.contrib import messages, auth
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
-from . models import Product, Category
+from . models import Product, Category, Order
 from cart.cart import Cart
 from django.contrib.auth.decorators import login_required
 from . forms import UpdateUserForm
+from django.http import HttpResponse
 
 def update_user(request):
     if request.user.is_authenticated:
@@ -151,6 +152,8 @@ def checkout(request):
     quantities = cart.get_quants
     totals = cart.cart_total()
 
+    # Capturing user details
+   
    
     return render(request, 'authentication/checkout.html', {'cart_products':cart_products, 'quantities':quantities, 'totals':totals})
 

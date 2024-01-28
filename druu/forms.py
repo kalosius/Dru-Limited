@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django import forms
+from . models import Order
 
 class UpdateUserForm(UserChangeForm):
     #hide password
@@ -19,7 +20,13 @@ class UpdateUserForm(UserChangeForm):
 
     def __init__(self, *args, **kwargs):
         super(UpdateUserForm, self).__init__(*args, **kwargs)
-        
+
+
+class OrderForm(forms.ModelForm):
+    class Meta:
+        model = Order
+        fields = ['product', 'customer', 'quantity', 'address', 'phone_number', 'date', 'status']
+
 
         
 
