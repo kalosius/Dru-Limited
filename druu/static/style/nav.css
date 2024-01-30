@@ -1,4 +1,10 @@
 /* Default styles for larger screens */
+
+*{
+    list-style: none;
+    text-decoration: none !important;
+}
+
 body{
     padding-top: 60px;
 }
@@ -53,6 +59,7 @@ nav{
     position: absolute;
     /* bottom: auto;   */
     width: 100%;
+
     /* height: auto; Adjust this value to match the height of your footer */
     /* background-color: #f4f4f4; */
 }
