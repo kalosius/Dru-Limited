@@ -3,7 +3,7 @@
 from pathlib import Path
 import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR= os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+BASE_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 SECRET_KEY = 'django-insecure-e^lj7@%6@9qk6*1s+)=co04d*1tb_-^_a4e4tbjcxceq_31qd9'
 
@@ -32,14 +32,14 @@ INSTALLED_APPS = [
 # middleware is a framework of hooks into Django’s request/response processing. It’s a light, low-level “plugin” system for globally altering Django’s input or output.
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',  
 ]
 
 # ROOT_URLCONF is a string (Python path to module) that specifies the full Python path to your root URLconf. For example, 'mydjangoapps.urls'.
@@ -121,6 +121,9 @@ INSTALLED_APPS = [
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR , 'staticfiles')
+
+# STATICFILES_STORAGE = "whitenoise.storage.CompressedMainfestStaticFilesStorage"
+# STATICFILES_DIRS = [BASE_DIR/'static']
 
 # Media files (uploaded by users)
 MEDIA_URL = '/media/'
