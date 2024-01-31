@@ -273,7 +273,7 @@
           </div>
 
           <!-- cash -->
-          <div id="cashOption paypal-button-container" class="payment-option">
+          <div id="cashOption" class="payment-option">
               Cash options Go here
           </div>
 
@@ -300,6 +300,7 @@
     
     <script src="https://www.paypalobjects.com/api/checkout.js"></script>
     <script>
+      var total = '{{ totals }}'
       paypal.Button.render({
         // Configure environment
         env: 'sandbox',
@@ -312,7 +313,7 @@
         style: {
           size: 'small',
           color: 'gold',
-          shape: 'pill',
+          shape: 'rect',
         },
 
         // Enable Pay Now checkout flow (optional)
@@ -323,7 +324,7 @@
           return actions.payment.create({
             transactions: [{
               amount: {
-                total: '0.01',
+                total: parseFloat(total).toFixed(2),
                 currency: 'USD'
               }
             }]
@@ -339,8 +340,8 @@
       }, '#paypal-button');
 
     </script>
-    <script src="https://www.pypal.com/sdk/js?client-id=sb&currency=USD"></script>
-    <script src="https://www.paypal.com/sdk/js?client-id=YOUR_CLIENT_ID"></script>
+    <script src="https://www.pypal.com/sdk/js?client-id=AWblPL03EgB8Y0vJ0ZAKb-a0AWT8-x1nBvDaeaRx4_qFMKO2MR0x5pHE-qXkx3gLssYe26QqRG9Wp_Ne&currency=USD"></script>
+    <!-- <script src="https://www.paypal.com/sdk/js?client-id=AWblPL03EgB8Y0vJ0ZAKb-a0AWT8-x1nBvDaeaRx4_qFMKO2MR0x5pHE-qXkx3gLssYe26QqRG9Wp_Ne"></script> -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
     <script src="../../assets/js/vendor/popper.min.js"></script>
