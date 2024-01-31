@@ -303,17 +303,17 @@
       var total = '{{ totals }}'
       paypal.Button.render({
         // Configure environment
-        env: 'sandbox',
+        env: 'sandbox', //change to production in live env
         client: {
           sandbox: 'demo_sandbox_client_id',
-          production: 'demo_production_client_id'
+          production: 'demo_production_client_id' //change to production in production env
         },
         // Customize button (optional)
-        locale: 'en_US',
+        locale: 'en_US',  //en_US, en_GB, fr_FR, fr_CA, es_ES, it_IT, pt_BR, zh_CN, zh_HK, zh_TW, ja_JP
         style: {
-          size: 'small',
-          color: 'gold',
-          shape: 'rect',
+          size: 'small',  //small, medium, large, responsive
+          color: 'gold', //gold, blue, silver
+          shape: 'rect', //pill
         },
 
         // Enable Pay Now checkout flow (optional)
@@ -325,7 +325,7 @@
             transactions: [{
               amount: {
                 total: parseFloat(total).toFixed(2),
-                currency: 'USD'
+                currency: 'USD' //change to UGX in live env
               }
             }]
           });
