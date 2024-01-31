@@ -1,4 +1,3 @@
-
 # Django settings for Drulimited project.
 
 from pathlib import Path
