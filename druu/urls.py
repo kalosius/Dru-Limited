@@ -12,7 +12,6 @@ urlpatterns = [
 
     path('logout/', views.logout_user, name="logout"),
     # products
-    # path('clothes/', views.clothes, name="clothes"),
     path('furniture/', views.furniture, name="furniture"),
     path('gadgets/', views.gadgets, name="gadgets"),
     path('pets/', views.pets, name="pets"),

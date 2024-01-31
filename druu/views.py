@@ -121,10 +121,6 @@ def registration(request):
     else:
         return render(request, "authentication/register.html")
 
-# Products pages
-# def clothes(request):
-#     return render(request, 'products/clothes.html')
-
 
 def furniture(request):
     return render(request, 'products/furniture.html')
@@ -142,8 +138,6 @@ def phones_and_accessories(request):
     return render(request, 'products/phones.html')
 
 
-# def sneakers(request):
-#     return render(request, 'products/sneakers.html')
 
 # checkout page
 def checkout(request):
