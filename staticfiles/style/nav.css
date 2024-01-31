@@ -1,0 +1,183 @@
+/* Default styles for larger screens */
+
+*{
+    list-style: none;
+    text-decoration: none !important;
+}
+
+body{
+    padding-top: 60px;
+}
+
+nav{
+    background-color: #333;
+    height: 60px;
+    width: 100%;
+    position: fixed !important;
+    top: 0;
+    z-index: 1;
+}
+
+.card{
+    border: none !important;
+}
+
+.card:hover {
+    cursor: pointer;
+    width: 250px !important;
+    background-color: #eceaea;
+}
+
+.nav-list {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #333;
+    color: #fff;
+    font-family: Arial, sans-serif;
+}
+
+
+.nav-unorder {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-unorder li:hover a{
+   color: black;
+   background-color: white;
+   border-radius: 10px;
+   padding: 10px;
+}
+
+
+/* footer */
+.footer-edit{
+    position: absolute;
+    /* bottom: auto;   */
+    width: 100%;
+
+    /* height: auto; Adjust this value to match the height of your footer */
+    /* background-color: #f4f4f4; */
+}
+
+
+
+
+/* going to smaller screens */
+/* Media query for smaller screens 
+form 411 t0 767px
+
+ */
+
+@media only screen and (max-width: 767px) {
+    .nav-unorder { 
+        display: none; /* Initially hide the nav items on smaller screens */
+        flex-direction: column;  /*nav list items*/ 
+      } 
+
+    .nav-unorder.show {
+        display: flex;  /*Displaythe nav items when the "show" class is added */
+    }
+
+    .nav-unorder li {
+        margin-bottom: 10px;
+        margin-right: 0;
+    }
+
+    .toggle-button {
+        display: block;
+        margin-top: 10px; 
+    }
+
+    ul li a {
+        text-decoration: none;
+        color: #fff;
+
+    }
+
+    .card:hover{
+        width: 250px !important;
+    }
+
+}
+ 
+
+/* Smallest screens */
+
+@media only screen and (max-width: 360px){
+    .card:hover{
+        width: 150px !important;
+    } 
+
+}
+
+@media only screen and (max-width: 375px ){
+    .card:hover{
+        width: 150px !important;
+    } 
+
+}
+
+@media only screen and (max-width: 390px ){
+    .card:hover{
+        width: 170px !important;
+    } 
+
+}
+
+@media only screen and (max-width: 414px){
+    .card:hover{
+        width: 170px !important;
+    } 
+    
+    .btn {
+        padding: 7px !important;
+    } 
+}
+
+@media only screen and (max-width: 430px){
+    .card:hover{
+        width: 190px !important;
+    } 
+}
+
+
+
+/* For wider screens */
+@media only screen and (min-width: 768px ){
+    .card:hover{
+        width: 220px !important;
+    } 
+
+}
+
+@media only screen and (min-width: 820px ){
+    .card:hover{
+        width: 225px !important;
+    } 
+
+}
+
+@media only screen and (min-width: 1024px ){
+    .card:hover{
+        width: 260px !important;
+    } 
+
+}
+
+
+@media only screen and (min-width: 1280px ){
+    .card:hover{
+        width: 270px !important;
+    } 
+
+}
+
+
+
+
+ 
