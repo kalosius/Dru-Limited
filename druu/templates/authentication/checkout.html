@@ -197,10 +197,10 @@
             <h4 class="mb-3">Payment</h4>
 
             <div class="d-block my-3">
-              <!-- <div class="custom-control custom-radio">
+              <div class="custom-control custom-radio">
                 <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked="" required="" wfd-id="id10" value="creditcard" onclick="togglePaymentOption('creditcard')">
                 <label class="custom-control-label" for="credit">Credit card</label>
-              </div> -->
+              </div>
 
               <div class="custom-control custom-radio">
                 <input id="debit" name="paymentMethod" type="radio" class="custom-control-input" required="" wfd-id="id11" value="debit" onclick="togglePaymentOption('debit')">
@@ -268,11 +268,12 @@
 
             <!-- paypal -->
             <div id="paypalOption" class="payment-option">
+              <div id="paypal-button"></div>
               PayPal options Go here
           </div>
 
           <!-- cash -->
-          <div id="cashOption" class="payment-option">
+          <div id="cashOption paypal-button-container" class="payment-option">
               Cash options Go here
           </div>
 
@@ -289,10 +290,57 @@
 
      
     </div>
+   
+
+
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
+    
+    <script src="https://www.paypalobjects.com/api/checkout.js"></script>
+    <script>
+      paypal.Button.render({
+        // Configure environment
+        env: 'sandbox',
+        client: {
+          sandbox: 'demo_sandbox_client_id',
+          production: 'demo_production_client_id'
+        },
+        // Customize button (optional)
+        locale: 'en_US',
+        style: {
+          size: 'small',
+          color: 'gold',
+          shape: 'pill',
+        },
+
+        // Enable Pay Now checkout flow (optional)
+        commit: true,
+
+        // Set up a payment
+        payment: function(data, actions) {
+          return actions.payment.create({
+            transactions: [{
+              amount: {
+                total: '0.01',
+                currency: 'USD'
+              }
+            }]
+          });
+        },
+        // Execute the payment
+        onAuthorize: function(data, actions) {
+          return actions.payment.execute().then(function() {
+            // Show a confirmation message to the buyer
+            window.alert('Thank you for your purchase!');
+          });
+        }
+      }, '#paypal-button');
+
+    </script>
+    <script src="https://www.pypal.com/sdk/js?client-id=sb&currency=USD"></script>
+    <script src="https://www.paypal.com/sdk/js?client-id=YOUR_CLIENT_ID"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
     <script src="../../assets/js/vendor/popper.min.js"></script>
