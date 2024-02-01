@@ -5,8 +5,28 @@ from django.contrib.auth import authenticate, login, logout
 from . models import Product, Category, Order
 from cart.cart import Cart
 from django.contrib.auth.decorators import login_required
-from . forms import UpdateUserForm, OrderForm
+from . forms import UpdateUserForm, OrderForm, ChangePasswordForm
 from django.http import HttpResponse
+
+def update_password(request):
+    if request.user.is_authenticated:
+        current_user = request.user 
+        # Is form filled out?
+        if request.method == "POST":
+            pass
+        else:
+            form = ChangePasswordForm(current_user)
+            return render(request, "authentication/update_password.html", {"form":form})
+        
+    else:
+        messages.success(request, 'You must be logged in to view page')
+        return render(request, "authentication/update_password.html", {})
+
+
+
+
+
+
 
 def update_user(request):
     if request.user.is_authenticated:
