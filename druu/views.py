@@ -8,19 +8,31 @@ from django.contrib.auth.decorators import login_required
 from . forms import UpdateUserForm, OrderForm, ChangePasswordForm
 from django.http import HttpResponse
 
+
 def update_password(request):
+    # form = ChangePasswordForm()
     if request.user.is_authenticated:
         current_user = request.user 
         # Is form filled out?
         if request.method == "POST":
-            pass
+            form = ChangePasswordForm(current_user, request.POST)
+
+            if form.is_valid():
+                form.save()
+                messages.success, "Your Password Has Been Updated, Please Log In Again.."
+                return redirect('login')
+            else:
+                for error in list(form.errors.values()):
+                    messages.error(request, error)  #This helps for django errors
+                    return redirect('update_password')
+
         else:
             form = ChangePasswordForm(current_user)
             return render(request, "authentication/update_password.html", {"form":form})
         
     else:
         messages.success(request, 'You must be logged in to view page')
-        return render(request, "authentication/update_password.html", {})
+        return redirect('home')
 
 
 
