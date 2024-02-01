@@ -12,9 +12,6 @@ DEBUG = True
 # Using the Django development server with DEBUG=True automatically serves media files
 
 ALLOWED_HOSTS = ["dru-interiors.onrender.com","localhost", "127.0.0.1"]
-# working successfully
-
-
 
 # Application definition
 
