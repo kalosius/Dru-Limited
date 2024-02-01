@@ -10,7 +10,6 @@ from django.http import HttpResponse
 
 
 def update_password(request):
-    # form = ChangePasswordForm()
     if request.user.is_authenticated:
         current_user = request.user 
         # Is form filled out?
@@ -22,6 +21,7 @@ def update_password(request):
                 messages.success, "Your Password Has Been Updated, Please Log In Again.."
                 return redirect('login')
             else:
+                
                 for error in list(form.errors.values()):
                     messages.error(request, error)  #This helps for django errors
                     return redirect('update_password')
@@ -33,11 +33,6 @@ def update_password(request):
     else:
         messages.success(request, 'You must be logged in to view page')
         return redirect('home')
-
-
-
-
-
 
 
 def update_user(request):
