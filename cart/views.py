@@ -5,7 +5,8 @@ from druu.models import Product
 from django.http import JsonResponse
 from django.http import HttpResponse
 from django.contrib import messages
-# Create your views here.
+from django.contrib.auth.decorators import login_required
+
 
 def cart_summary(request):
     # Get the cart
