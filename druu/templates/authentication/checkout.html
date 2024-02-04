@@ -269,12 +269,16 @@
             <!-- paypal -->
             <div id="paypalOption" class="payment-option">
               <div id="paypal-button"></div>
-              PayPal options Go here
+              
           </div>
 
           <!-- cash -->
           <div id="cashOption" class="payment-option">
-              Cash options Go here
+              <div style="display: flex;">
+                <li><img src="{% static 'images/payments/cash-on-delivery_6491490.png' %}" alt="" width="100px" height="100px"></li>
+                <li><img src="{% static 'images/payments/transaction_12341013.png' %}" alt="" width="100px" height="100px"></li>
+                
+              </div>
           </div>
 
           <!-- mobile money -->
@@ -340,8 +344,8 @@
       }, '#paypal-button');
 
     </script>
-    <script src="https://www.pypal.com/sdk/js?client-id=AWblPL03EgB8Y0vJ0ZAKb-a0AWT8-x1nBvDaeaRx4_qFMKO2MR0x5pHE-qXkx3gLssYe26QqRG9Wp_Ne&currency=USD"></script>
-    <!-- <script src="https://www.paypal.com/sdk/js?client-id=AWblPL03EgB8Y0vJ0ZAKb-a0AWT8-x1nBvDaeaRx4_qFMKO2MR0x5pHE-qXkx3gLssYe26QqRG9Wp_Ne"></script> -->
+    <script src="https://www.pypal.com/sdk/js?client-id=ASvgP3-ihYGRRSr66gvdhLQL1b8apyjEyu_An6pki86on_0IQVNmANgdFLTM4wWX_L9GeZbK4iL31nv7&currency=USD"></script>
+    <script src="https://www.paypal.com/sdk/js?client-id=ASvgP3-ihYGRRSr66gvdhLQL1b8apyjEyu_An6pki86on_0IQVNmANgdFLTM4wWX_L9GeZbK4iL31nv7"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
     <script src="../../assets/js/vendor/popper.min.js"></script>
