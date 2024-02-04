@@ -10,6 +10,22 @@
     .card:hover {
       width: auto !important;
     }
+
+    /* flutter css */
+    #start-payment-button {
+      cursor: pointer;
+      position: relative;
+      background-color: #ff9b00;
+      color: #12122c;
+      max-width: 30%;
+      padding: 7.5px 16px;
+      font-weight: 500;
+      font-size: 14px;
+      border-radius: 4px;
+      border: none;
+      transition: all .1s ease-in;
+      vertical-align: middle;
+    }
 </style>
 
 
@@ -283,8 +299,12 @@
           </div>
 
           <!-- mobile money -->
+          <!-- flutter -->
           <div id="mobileOption" class="payment-option">
-            Mobile money options Go here
+            <div>
+              Your order is <strong>shs.{{ totals }}</strong>
+            </div>
+            <button type="button" id="start-payment-button" onclick="makePayment()">Pay Now</button>
           </div>
 
             <hr class="mb-4">
@@ -297,12 +317,36 @@
     </div>
    
 
+    <!-- flutter script -->
+    <script>
+      function makePayment() {
+        FlutterwaveCheckout({
+          public_key: "FLWPUBK_TEST-337d4e3e6c0c10c22b28cac389a35d46-X",
+          tx_ref: "txref-DI0NzMx12",
+          amount: 2500,
+          currency: "NGN",
+          payment_options: "card, banktransfer, ussd",
+          meta: {
+            source: "docs-inline-test",
+            consumer_mac: "92a3-912ba-1192a",
+          },
+          customer: {
+            email: "test@mailinator.com",
+            phone_number: "08100000000",
+            name: "Ayomide Jimi-Oni",
+          },
+          customizations: {
+            title: "Flutterwave Developers",
+            description: "Test Payment",
+            logo: "https://checkout.flutterwave.com/assets/img/rave-logo.png",
+          },
+        });
+      }
+    </script>
+    <!-- Flutter Script -->
+    <script src="https://checkout.flutterwave.com/v3.js"></script>
 
-
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    
+    <!-- Paypal script -->
     <script src="https://www.paypalobjects.com/api/checkout.js"></script>
     <script>
       var total = '{{ totals }}'
@@ -343,10 +387,14 @@
           });
         }
       }, '#paypal-button');
-
     </script>
+
+
+    <!-- // paypal script -->
     <script src="https://www.pypal.com/sdk/js?client-id=ASvgP3-ihYGRRSr66gvdhLQL1b8apyjEyu_An6pki86on_0IQVNmANgdFLTM4wWX_L9GeZbK4iL31nv7&currency=USD"></script>
     <script src="https://www.paypal.com/sdk/js?client-id=ASvgP3-ihYGRRSr66gvdhLQL1b8apyjEyu_An6pki86on_0IQVNmANgdFLTM4wWX_L9GeZbK4iL31nv7"></script>
+
+    <!-- Other Script tags -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
     <script src="../../assets/js/vendor/popper.min.js"></script>
