@@ -1,37 +1,37 @@
-{% extends 'base.html' %} 
+{% extends 'base.html' %}
 {% load static %}
 {% block content %}
 
 <style>
-    .payment-option{
-      display: none;
-    }
+  .payment-option {
+    display: none;
+  }
 
-    .card:hover {
-      width: auto !important;
-    }
+  .card:hover {
+    width: auto !important;
+  }
 
-    /* flutter css */
-    #start-payment-button {
-      cursor: pointer;
-      position: relative;
-      background-color: #ff9b00;
-      color: #12122c;
-      max-width: 30%;
-      padding: 7.5px 16px;
-      font-weight: 500;
-      font-size: 14px;
-      border-radius: 4px;
-      border: none;
-      transition: all .1s ease-in;
-      vertical-align: middle;
-    }
+  /* flutter css */
+  #start-payment-button {
+    cursor: pointer;
+    position: relative;
+    background-color: #ff9b00;
+    color: #12122c;
+    max-width: 30%;
+    padding: 7.5px 16px;
+    font-weight: 500;
+    font-size: 14px;
+    border-radius: 4px;
+    border: none;
+    transition: all .1s ease-in;
+    vertical-align: middle;
+  }
 </style>
 
 
 <body class="bg-light">
 
-<!-- {% for message in messages %}
+  <!-- {% for message in messages %}
     {{ message }}
 {% endfor %}
   <form action="" method="POST">
@@ -40,262 +40,268 @@
     <button type="submit">Submit</button>
   </form> -->
 
-    <div class="container">
+  <div class="container">
 
-      <div class="container">
-        <div class="py-5 text-center">
-          <img class="d-block mx-auto mb-4" src="{% static 'images/Dru-interiors (1).png' %}" alt="DruEnterprises" width="10%" height="10%" style="margin: 0px; float: left;">
-          <h2>Checkout Cart</h2>
-          <p class="lead">checkout Page to be implemented</p>
-        </div>
+    <div class="container">
+      <div class="py-5 text-center">
+        <h2>Checkout Cart</h2>
+        <p class="lead">Loading...</p>
+      </div>
+    </div>
+
+    <!-- cart -->
+    <div class="row">
+      <div class="col-md-4 order-md-2 mb-4">
+        <h4 class="d-flex justify-content-between align-items-center mb-3">
+          <span class="text-muted">Your cart</span>
+          <span class="badge badge-secondary badge-pill">{{ value }}</span>
+        </h4>
+
+        {% if cart_products %}
+        {% for product in cart_products %}
+        <ul class="list-group mb-3">
+          <li class="list-group-item d-flex justify-content-between lh-condensed">
+            <img src="{{ product.image.url }}" alt="Product" width="25%">
+            <div>
+              {% for key, value in quantities.items %}
+              {% if key == product.id|slugify %}
+              <option selected>Quantity: {{ value }}</option>
+              {% endif %}
+              {% endfor %}
+              <h6 class="my-0">{{ product.name }}</h6>
+              <small class="text-muted">Brief description</small>
+            </div>
+            <span class="text-muted">{{ product.price }}</span>
+          </li>
+
+          {% endfor %}
+          {% endif %}
+
+          <li class="list-group-item d-flex justify-content-between bg-light">
+            <div class="text-success">
+              <h6 class="my-0">Promo code</h6>
+              <small>EXAMPLECODE</small>
+            </div>
+            <span class="text-success">-5000shs</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between">
+            <span>Total (Ugx)</span>
+            <strong>{{ totals }}shs</strong>
+          </li>
+        </ul>
+
+
+        <form class="card p-2">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Promo code" wfd-id="id0">
+            <div class="input-group-append">
+              <button type="submit" class="btn btn-secondary">Redeem</button>
+            </div>
+          </div>
+        </form>
       </div>
 
-      <!-- cart -->
-      <div class="row">
-        <div class="col-md-4 order-md-2 mb-4">
-          <h4 class="d-flex justify-content-between align-items-center mb-3">
-            <span class="text-muted">Your cart</span>
-            <span class="badge badge-secondary badge-pill">{{ value }}</span>
-          </h4>
-
-          {% if cart_products %}
-            {% for product in cart_products %}
-          <ul class="list-group mb-3">
-            <li class="list-group-item d-flex justify-content-between lh-condensed">
-              <img src="{{ product.image.url }}" alt="Product" width="25%">
-              <div>
-                {% for key, value in quantities.items %}
-                  {% if key == product.id|slugify %}
-                      <option selected>Quantity: {{ value }}</option>
-                  {% endif %}
-                {% endfor %}
-                <h6 class="my-0">{{ product.name }}</h6>
-                <small class="text-muted">Brief description</small>
-              </div>
-              <span class="text-muted">{{ product.price }}</span>
-            </li>
-             
-            {% endfor %}
-            {% endif %}
-            
-            <li class="list-group-item d-flex justify-content-between bg-light">
-              <div class="text-success">
-                <h6 class="my-0">Promo code</h6>
-                <small>EXAMPLECODE</small>
-              </div>
-              <span class="text-success">-5000shs</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between">
-              <span>Total (Ugx)</span>
-              <strong>{{ totals }}shs</strong>
-            </li>
-          </ul>
-          
-          
-          <form class="card p-2">
-            <div class="input-group">
-              <input type="text" class="form-control" placeholder="Promo code" wfd-id="id0">
-              <div class="input-group-append">
-                <button type="submit" class="btn btn-secondary">Redeem</button>
-              </div>
-            </div>
-          </form>
-        </div>
-
-        <!-- Person Details -->
-        <div class="col-md-8 order-md-1">
-          <h4 class="mb-3">Billing address</h4>
-          <form class="needs-validation" method="POST" action="{% url 'checkout' %}" novalidate="">
-            {% csrf_token %}
-            <div class="row">
-              <div class="col-md-6 mb-3">
-                <label for="firstName">First Name</label>
-                <input type="text" class="form-control disable" id="firstName" placeholder="" value="" required="" wfd-id="id1">
-                <div class="invalid-feedback">
-                  Valid first name is required.
-                </div>
-              </div>
-              <div class="col-md-6 mb-3">
-                <label for="lastName">Last name</label>
-                <input type="text" class="form-control" id="lastName" placeholder="" value="" required="" wfd-id="id2">
-                <div class="invalid-feedback">
-                  Valid last name is required.
-                </div>
-              </div>
-            </div>
-
-            
-            <div class="mb-3">
-              <label for="username">Username</label>
-              <div class="input-group">
-                <div class="input-group-prepend">
-                  <span class="input-group-text">@</span>
-                </div>
-                <input type="text" class="form-control" id="username" placeholder="Username" required="" wfd-id="id3">
-                <div class="invalid-feedback" style="width: 100%;">
-                  Your username is required.
-                </div>
-              </div>
-            </div>
-
-            <div class="mb-3">
-              <label for="email" class="form-label">Email <span class="text-muted">(Optional)</span></label>
-              <input type="email" class="form-control" id="email" placeholder="you@example.com" aria-describedby="emailHelp">
-              <div id="emailHelp" class="form-text">We'll only use your email for shipping updates.</div>
+      <!-- Person Details -->
+      <div class="col-md-8 order-md-1">
+        <h4 class="mb-3">Billing address</h4>
+        <form class="needs-validation" method="POST" action="{% url 'checkout' %}" novalidate="">
+          {% csrf_token %}
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="firstName">First Name</label>
+              <input type="text" class="form-control disable" id="firstName" placeholder="" value="" required=""
+                wfd-id="id1">
               <div class="invalid-feedback">
-                  Please enter a valid email address.
+                Valid first name is required.
               </div>
-          </div>          
-
-            <div class="mb-3">
-              <label for="address">Address</label>
-              <input type="text" class="form-control" id="address" placeholder="1234 Main St" required="" wfd-id="id5">
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="lastName">Last name</label>
+              <input type="text" class="form-control" id="lastName" placeholder="" value="" required="" wfd-id="id2">
               <div class="invalid-feedback">
-                Please enter your shipping address.
+                Valid last name is required.
               </div>
             </div>
-
-            <div class="mb-3">
-              <label for="address2">Address 2 <span class="text-muted">(Optional)</span></label>
-              <input type="text" class="form-control" id="address2" placeholder="Apartment or suite" wfd-id="id6">
-            </div>
-
-            <div class="row">
-              <div class="col-md-5 mb-3">
-                <label for="country">Country</label>
-                <select class="custom-select d-block w-100" id="country" required="">
-                  <option value="">Choose...</option>
-                  <option>Uganda</option>
-                </select>
-                <div class="invalid-feedback">
-                  Please select a valid country.
-                </div>
-              </div>
-              <div class="col-md-4 mb-3">
-                <label for="state">Region</label>
-                <select class="custom-select d-block w-100" id="state" required="">
-                  <option value="">Choose...</option>
-                  <option>Central Region</option>
-                  <option>Eastern Region</option>
-                  <option>Western Region</option>
-                  <option>Northern Region</option>
-                </select>
-                <div class="invalid-feedback">
-                  Select Region
-                </div>
-              </div>
-              <div class="col-md-4 mb-3">
-                <label for="state">City</label>
-                <select class="custom-select d-block w-100" id="state" required="">
-                  <option value="">Choose...</option>
-                  <option>Kampala</option>
-                </select>
-                <div class="invalid-feedback">
-                  Select Your City
-                </div>
-              </div>
-            </div>
-
-            <!-- shipping address starts here -->
-            <hr class="mb-4">
-            <div class="custom-control custom-checkbox">
-              <input type="checkbox" class="custom-control-input" id="same-address" wfd-id="id8">
-              <label class="custom-control-label" for="same-address">Shipping address is the same as my billing address</label>
-            </div>
-          
-            <div class="custom-control custom-checkbox">
-              <input type="checkbox" class="custom-control-input" id="save-info" wfd-id="id9">
-              <label class="custom-control-label" for="save-info">Save this information for next time</label>
-            </div>
-            <hr class="mb-4">
-
-             <!-- payment options -->
-            <h4 class="mb-3">Payment</h4>
-
-            <div class="d-block my-3">
-              <div class="custom-control custom-radio">
-                <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked="" required="" wfd-id="id10" value="creditcard" onclick="togglePaymentOption('creditcard')">
-                <label class="custom-control-label" for="credit">Credit card</label>
-              </div>
-
-              <div class="custom-control custom-radio">
-                <input id="debit" name="paymentMethod" type="radio" class="custom-control-input" required="" wfd-id="id11" value="debit" onclick="togglePaymentOption('debit')">
-                <label class="custom-control-label" for="debit">Debit card</label>
-              </div>
-
-              <div class="custom-control custom-radio">
-                <input id="paypal" name="paymentMethod" type="radio" class="custom-control-input" required="" wfd-id="id12" value="paypal" onclick="togglePaymentOption('paypal')">
-                <label class="custom-control-label" for="paypal">Paypal</label>
-              </div>
-              
-              <div class="custom-control custom-radio">
-                <input id="mobile" name="paymentMethod" type="radio" class="custom-control-input" required="" wfd-id="id12" value="mobile" onclick="togglePaymentOption('mobile')">
-                <label class="custom-control-label" for="paypal">Mobile Money</label>
-              </div>
-              
-              <div class="custom-control custom-radio">
-                <input id="cash" name="paymentMethod" type="radio" class="custom-control-input" required="" wfd-id="id12" value="cash" onclick="togglePaymentOption('cash')">
-                <label class="custom-control-label" for="paypal">Cash on Delivery</label>
-              </div>
-
-
-            </div>
-
-            <!-- credit options -->
-            <div id="creditcardOption" class="payment-option">
-              Credit options Go here
           </div>
 
-            <!-- debit options -->
-            <div id="debitOption" class="row payment-option">
-              <div class="col-md-6 mb-3">
-                <label for="cc-name">Name on card</label>
-                <input type="text" class="form-control" id="cc-name" placeholder="" required="" wfd-id="id13">
-                <small class="text-muted">Full name as displayed on card</small>
+
+          <div class="mb-3">
+            <label for="username">Username</label>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">@</span>
+              </div>
+              <input type="text" class="form-control" id="username" placeholder="Username" required="" wfd-id="id3">
+              <div class="invalid-feedback" style="width: 100%;">
+                Your username is required.
+              </div>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="email" class="form-label">Email <span class="text-muted">(Optional)</span></label>
+            <input type="email" class="form-control" id="email" placeholder="you@example.com"
+              aria-describedby="emailHelp">
+            <div id="emailHelp" class="form-text">We'll only use your email for shipping updates.</div>
+            <div class="invalid-feedback">
+              Please enter a valid email address.
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="address">Address</label>
+            <input type="text" class="form-control" id="address" placeholder="1234 Main St" required="" wfd-id="id5">
+            <div class="invalid-feedback">
+              Please enter your shipping address.
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="address2">Address 2 <span class="text-muted">(Optional)</span></label>
+            <input type="text" class="form-control" id="address2" placeholder="Apartment or suite" wfd-id="id6">
+          </div>
+
+          <div class="row">
+            <div class="col-md-5 mb-3">
+              <label for="country">Country</label>
+              <select class="custom-select d-block w-100" id="country" required="">
+                <option value="">Choose...</option>
+                <option>Uganda</option>
+              </select>
+              <div class="invalid-feedback">
+                Please select a valid country.
+              </div>
+            </div>
+            <div class="col-md-4 mb-3">
+              <label for="state">Region</label>
+              <select class="custom-select d-block w-100" id="state" required="">
+                <option value="">Choose...</option>
+                <option>Central Region</option>
+                <option>Eastern Region</option>
+                <option>Western Region</option>
+                <option>Northern Region</option>
+              </select>
+              <div class="invalid-feedback">
+                Select Region
+              </div>
+            </div>
+            <div class="col-md-4 mb-3">
+              <label for="state">City</label>
+              <select class="custom-select d-block w-100" id="state" required="">
+                <option value="">Choose...</option>
+                <option>Kampala</option>
+              </select>
+              <div class="invalid-feedback">
+                Select Your City
+              </div>
+            </div>
+          </div>
+
+          <!-- shipping address starts here -->
+          <hr class="mb-4">
+          <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="same-address" wfd-id="id8">
+            <label class="custom-control-label" for="same-address">Shipping address is the same as my billing
+              address</label>
+          </div>
+
+          <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="save-info" wfd-id="id9">
+            <label class="custom-control-label" for="save-info">Save this information for next time</label>
+          </div>
+          <hr class="mb-4">
+
+          <!-- payment options -->
+          <h4 class="mb-3">Payment</h4>
+
+          <div class="d-block my-3">
+            <div class="custom-control custom-radio">
+              <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked="" required=""
+                wfd-id="id10" value="creditcard" onclick="togglePaymentOption('creditcard')">
+              <label class="custom-control-label" for="credit">Credit card</label>
+            </div>
+
+            <div class="custom-control custom-radio">
+              <input id="debit" name="paymentMethod" type="radio" class="custom-control-input" required="" wfd-id="id11"
+                value="debit" onclick="togglePaymentOption('debit')">
+              <label class="custom-control-label" for="debit">Debit card</label>
+            </div>
+
+            <div class="custom-control custom-radio">
+              <input id="paypal" name="paymentMethod" type="radio" class="custom-control-input" required=""
+                wfd-id="id12" value="paypal" onclick="togglePaymentOption('paypal')">
+              <label class="custom-control-label" for="paypal">Paypal</label>
+            </div>
+
+            <div class="custom-control custom-radio">
+              <input id="mobile" name="paymentMethod" type="radio" class="custom-control-input" required=""
+                wfd-id="id12" value="mobile" onclick="togglePaymentOption('mobile')">
+              <label class="custom-control-label" for="paypal">Mobile Money</label>
+            </div>
+
+            <div class="custom-control custom-radio">
+              <input id="cash" name="paymentMethod" type="radio" class="custom-control-input" required="" wfd-id="id12"
+                value="cash" onclick="togglePaymentOption('cash')">
+              <label class="custom-control-label" for="paypal">Cash on Delivery</label>
+            </div>
+
+
+          </div>
+
+          <!-- credit options -->
+          <div id="creditcardOption" class="payment-option">
+            Credit options Go here
+          </div>
+
+          <!-- debit options -->
+          <div id="debitOption" class="row payment-option">
+            <div class="col-md-6 mb-3">
+              <label for="cc-name">Name on card</label>
+              <input type="text" class="form-control" id="cc-name" placeholder="" required="" wfd-id="id13">
+              <small class="text-muted">Full name as displayed on card</small>
+              <div class="invalid-feedback">
+                Name on card is required
+              </div>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="cc-number">Debit card number</label>
+              <input type="text" class="form-control" id="cc-number" placeholder="" required="" wfd-id="id14">
+              <div class="invalid-feedback">
+                Debit card number is required
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-3 mb-3">
+                <label for="cc-expiration">Expiration</label>
+                <input type="text" class="form-control" id="cc-expiration" placeholder="" required="" wfd-id="id15">
                 <div class="invalid-feedback">
-                  Name on card is required
+                  Expiration date required
                 </div>
               </div>
-              <div class="col-md-6 mb-3">
-                <label for="cc-number">Debit card number</label>
-                <input type="text" class="form-control" id="cc-number" placeholder="" required="" wfd-id="id14">
+              <div class="col-md-3 mb-3">
+                <label for="cc-expiration">CVV</label>
+                <input type="text" class="form-control" id="cc-cvv" placeholder="" required="" wfd-id="id16">
                 <div class="invalid-feedback">
-                  Debit card number is required
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-3 mb-3">
-                  <label for="cc-expiration">Expiration</label>
-                  <input type="text" class="form-control" id="cc-expiration" placeholder="" required="" wfd-id="id15">
-                  <div class="invalid-feedback">
-                    Expiration date required
-                  </div>
-                </div>
-                <div class="col-md-3 mb-3">
-                  <label for="cc-expiration">CVV</label>
-                  <input type="text" class="form-control" id="cc-cvv" placeholder="" required="" wfd-id="id16">
-                  <div class="invalid-feedback">
-                    Security code required
-                  </div>
+                  Security code required
                 </div>
               </div>
             </div>
-            <!-- end of debit options -->
+          </div>
+          <!-- end of debit options -->
 
-            <!-- paypal -->
-            <div id="paypalOption" class="payment-option">
-              <div id="paypal-button"></div>
-              
+          <!-- paypal -->
+          <div id="paypalOption" class="payment-option">
+            <div id="paypal-button"></div>
+
           </div>
 
           <!-- cash -->
           <div id="cashOption" class="payment-option">
-              <div style="display: flex;">
-                <li><img src="{% static 'images/payments/cash-on-delivery_6491490.png' %}" alt="" width="100px" height="100px"></li>
-                <li><img src="{% static 'images/payments/transaction_12341013.png' %}" alt="" width="100px" height="100px"></li>
-                <li><img src="{% static 'images/payments/cash-on-delivery_6491511.png' %}" alt="" width="100px" height="100px"></li>
-                
-              </div>
+            <div style="display: flex;">
+              <li><img src="{% static 'images/payments/cash-on-delivery_6491511.png' %}" alt="" width="100px"
+                  height="100px"></li>
+
+            </div>
           </div>
 
           <!-- mobile money -->
@@ -307,111 +313,115 @@
             <button type="button" id="start-payment-button" onclick="makePayment()">Pay Now</button>
           </div>
 
-            <hr class="mb-4">
-            <button class="btn btn-secondary btn-lg btn-block" type="submit">Continue to checkout</button>
-          </form>
-        </div>
+          <hr class="mb-4">
+          <button class="btn btn-secondary btn-lg btn-block" type="submit">Continue to checkout</button>
+        </form>
       </div>
-
-     
     </div>
-   
 
-    <!-- flutter script -->
-    <script>
-      function makePayment() {
-        FlutterwaveCheckout({
-          public_key: "FLWPUBK_TEST-393131afcca85e1957f1aeb638a51757-X",
-          tx_ref: "txref-DI0NzMx12",
-          amount: 2500,
-          currency: "NGN",
-          payment_options: "card, banktransfer, ussd",
-          meta: {
-            source: "docs-inline-test",
-            consumer_mac: "92a3-912ba-1192a",
-          },
-          customer: {
-            email: "test@mailinator.com",
-            phone_number: "08100000000",
-            name: "Ayomide Jimi-Oni",
-          },
-          customizations: {
-            title: "Flutterwave Developers",
-            description: "Test Payment",
-            logo: "https://checkout.flutterwave.com/assets/img/rave-logo.png",
-          },
+
+  </div>
+
+
+  <!-- flutter script -->
+  <script>
+    function makePayment() {
+      FlutterwaveCheckout({
+        public_key: "FLWPUBK_TEST-393131afcca85e1957f1aeb638a51757-X",
+        tx_ref: "txref-DI0NzMx12",
+        amount: 2500,
+        currency: "NGN",
+        payment_options: "card, banktransfer, ussd",
+        meta: {
+          source: "docs-inline-test",
+          consumer_mac: "92a3-912ba-1192a",
+        },
+        customer: {
+          email: "test@mailinator.com",
+          phone_number: "08100000000",
+          name: "Ayomide Jimi-Oni",
+        },
+        customizations: {
+          title: "Flutterwave Developers",
+          description: "Test Payment",
+          logo: "https://checkout.flutterwave.com/assets/img/rave-logo.png",
+        },
+      });
+    }
+  </script>
+  <!-- Flutter Script -->
+  <script src="https://checkout.flutterwave.com/v3.js"></script>
+
+  <!-- Paypal script -->
+  <script src="https://www.paypalobjects.com/api/checkout.js"></script>
+  <script>
+    var total = '{{ totals }}'
+    paypal.Button.render({
+      // Configure environment
+      env: 'sandbox', //change to production in live env
+      client: {
+        sandbox: 'demo_sandbox_client_id',
+        production: 'demo_production_client_id' //change to production in production env
+      },
+      // Customize button (optional)
+      locale: 'en_US',  //en_US, en_GB, fr_FR, fr_CA, es_ES, it_IT, pt_BR, zh_CN, zh_HK, zh_TW, ja_JP
+      style: {
+        size: 'small',  //small, medium, large, responsive
+        color: 'gold', //gold, blue, silver
+        shape: 'rect', //pill
+      },
+
+      // Enable Pay Now checkout flow (optional)
+      commit: true,
+
+      // Set up a payment
+      payment: function (data, actions) {
+        return actions.payment.create({
+          transactions: [{
+            amount: {
+              total: parseFloat(total).toFixed(2),
+              currency: 'USD'
+            }
+          }]
+        });
+      },
+      // Execute the payment
+      onAuthorize: function (data, actions) {
+        return actions.payment.execute().then(function () {
+          // Show a confirmation message to the buyer
+          window.alert('Thank you for your purchase!');
         });
       }
-    </script>
-    <!-- Flutter Script -->
-    <script src="https://checkout.flutterwave.com/v3.js"></script>
-
-    <!-- Paypal script -->
-    <script src="https://www.paypalobjects.com/api/checkout.js"></script>
-    <script>
-      var total = '{{ totals }}'
-      paypal.Button.render({
-        // Configure environment
-        env: 'sandbox', //change to production in live env
-        client: {
-          sandbox: 'demo_sandbox_client_id',
-          production: 'demo_production_client_id' //change to production in production env
-        },
-        // Customize button (optional)
-        locale: 'en_US',  //en_US, en_GB, fr_FR, fr_CA, es_ES, it_IT, pt_BR, zh_CN, zh_HK, zh_TW, ja_JP
-        style: {
-          size: 'small',  //small, medium, large, responsive
-          color: 'gold', //gold, blue, silver
-          shape: 'rect', //pill
-        },
-
-        // Enable Pay Now checkout flow (optional)
-        commit: true,
-
-        // Set up a payment
-        payment: function(data, actions) {
-          return actions.payment.create({
-            transactions: [{
-              amount: {
-                total: parseFloat(total).toFixed(2),
-                currency: 'USD'
-              }
-            }]
-          });
-        },
-        // Execute the payment
-        onAuthorize: function(data, actions) {
-          return actions.payment.execute().then(function() {
-            // Show a confirmation message to the buyer
-            window.alert('Thank you for your purchase!');
-          });
-        }
-      }, '#paypal-button');
-    </script>
+    }, '#paypal-button');
+  </script>
 
 
-    <!-- // paypal script -->
-    <script src="https://www.pypal.com/sdk/js?client-id=ASvgP3-ihYGRRSr66gvdhLQL1b8apyjEyu_An6pki86on_0IQVNmANgdFLTM4wWX_L9GeZbK4iL31nv7&currency=USD"></script>
-    <script src="https://www.paypal.com/sdk/js?client-id=ASvgP3-ihYGRRSr66gvdhLQL1b8apyjEyu_An6pki86on_0IQVNmANgdFLTM4wWX_L9GeZbK4iL31nv7"></script>
+  <!-- // paypal script -->
+  <script
+    src="https://www.pypal.com/sdk/js?client-id=ASvgP3-ihYGRRSr66gvdhLQL1b8apyjEyu_An6pki86on_0IQVNmANgdFLTM4wWX_L9GeZbK4iL31nv7&currency=USD"></script>
+  <script
+    src="https://www.paypal.com/sdk/js?client-id=ASvgP3-ihYGRRSr66gvdhLQL1b8apyjEyu_An6pki86on_0IQVNmANgdFLTM4wWX_L9GeZbK4iL31nv7"></script>
 
-    <!-- Other Script tags -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
-    <script src="../../assets/js/vendor/popper.min.js"></script>
-    <script src="../../dist/js/bootstrap.min.js"></script>
-    <script src="../../assets/js/vendor/holder.min.js"></script>
-    <script>
+  <!-- Other Script tags -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+  <script src="../../assets/js/vendor/popper.min.js"></script>
+  <script src="../../dist/js/bootstrap.min.js"></script>
+  <script src="../../assets/js/vendor/holder.min.js"></script>
+  <script>
       // Example starter JavaScript for disabling form submissions if there are invalid fields
-      (function() {
+      (function () {
         'use strict';
 
-        window.addEventListener('load', function() {
+        window.addEventListener('load', function () {
           // Fetch all the forms we want to apply custom Bootstrap validation styles to
           var forms = document.getElementsByClassName('needs-validation');
 
           // Loop over them and prevent submission
-          var validation = Array.prototype.filter.call(forms, function(form) {
-            form.addEventListener('submit', function(event) {
+          var validation = Array.prototype.filter.call(forms, function (form) {
+            form.addEventListener('submit', function (event) {
               if (form.checkValidity() === false) {
                 event.preventDefault();
                 event.stopPropagation();
@@ -421,21 +431,21 @@
           });
         }, false);
       })();
-    </script>
+  </script>
 
-    <!-- script for payment methods when selected -->
-    <script>
-      function togglePaymentOption(option){
-        var options = document.getElementsByClassName('payment-option');
-        for (var i = 0; i < options.length; i++){
-          options[i].style.display = "none";
-        }
-        
-        var selectedOption = document.getElementById(option + "Option");
-            selectedOption.style.display = "block";
+  <!-- script for payment methods when selected -->
+  <script>
+    function togglePaymentOption(option) {
+      var options = document.getElementsByClassName('payment-option');
+      for (var i = 0; i < options.length; i++) {
+        options[i].style.display = "none";
       }
-    </script>
-  
+
+      var selectedOption = document.getElementById(option + "Option");
+      selectedOption.style.display = "block";
+    }
+  </script>
+
 
 </body>
 
