@@ -2,11 +2,30 @@ from django.shortcuts import render, redirect
 from django.contrib import messages, auth
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
-from . models import Product, Category, Order
+from . models import Product, Category, Profile
 from cart.cart import Cart
 from django.contrib.auth.decorators import login_required
-from . forms import UpdateUserForm, OrderForm, ChangePasswordForm
+from . forms import UpdateUserForm, OrderForm, ChangePasswordForm, UserInfoForm
 from django.http import HttpResponse
+
+
+def update_info(request):
+    if request.user.is_authenticated:
+        current_user = Profile.objects.get(user__id=request.user.id)
+        form = UserInfoForm(request.POST or None, instance=current_user)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Your Info Has Been Updated   !!')
+            return redirect("home")
+        return render(request, "authentication/update_info.html", {"form":form})
+    else:
+        messages.success(request, "You must be logged in to access the page!!")
+        return redirect("home")
+
+
+
+
+
 
 
 def update_password(request):
@@ -137,11 +156,11 @@ def registration(request):
                     user = User.objects.create_user(username=username, email=email, password=password1)
                     # login after register
                     auth.login(request, user)
-                    messages.success(request, f'Hi {capitalized_username}! Welcome to DruEnterprises...')
+                    messages.success(request, f'Hi {capitalized_username}! Welcome to DruEnterprises - Please Fill Out Your User Info Below...')
                     # return redirect('index')
                     user.save()
                     # messages.success(request, 'You are now registered and can log in')
-                    return redirect('home')
+                    return redirect('update_info')
         else:
             messages.warning(request, 'Passwords do not match')
             return redirect('register')
