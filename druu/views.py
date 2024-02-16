@@ -6,6 +6,7 @@ from . models import Product, Category, Profile
 from cart.cart import Cart
 from django.contrib.auth.decorators import login_required
 from . forms import UpdateUserForm, OrderForm, ChangePasswordForm, UserInfoForm
+from django.db.models import Q
 from django.http import HttpResponse
 
 
@@ -209,7 +210,7 @@ def checkout(request):
 def search(request):
     if request.method == "POST":
         searched = request.POST['searched']
-        products = Product.objects.filter(name__contains = searched)
+        products = Product.objects.filter(Q(name__icontains = searched) | Q(description__icontains = searched)| Q(price__icontains = searched))
         return render(request, 'search.html', {'searched':searched, 'products':products})
     
     return render(request, 'search.html', {})
