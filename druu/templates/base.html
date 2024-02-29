@@ -26,9 +26,11 @@
 
     <nav>
         <div class="nav-list">
-            <h1 style="color: rgb(159, 185, 202);"><img src="{% static 'images/Dru-interiors.png' %}"
-                    alt="">DruEnterprises</h1>
-            <ul class="nav-unorder">
+            <h1 class="pname"><span class="d">Dru</span><span class="l">lime</span>
+            </h1>
+            <button class="toggle-button" id="toggle">&#9776;Menu</button>
+        </div>
+        <ul class="nav-unorder">
                 <li><a href="{% url 'home' %}">Home</a></li>
                 <li><a href="{% url 'category' 'Beddings' %}">Furniture</a></li>
                 <li><a href="{% url 'category' 'Phones' %}">phones</a></li>
@@ -86,8 +88,6 @@
                 <!-- endnav -->
 
             </ul>
-            <button class="toggle-button" id="toggle">&#9776;Menu</button>
-        </div>
     </nav>
     <!-- nav end -->
 

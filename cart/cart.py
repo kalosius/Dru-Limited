@@ -32,12 +32,14 @@
 
 # for the above code, sessions weren't working correctly so I had to change it to this:
 
-from druu.models import Product
+from druu.models import Product, Profile
 
 class Cart():
     def __init__(self, request):
         self.cart = {}
         self.session = request.session
+        # Get request
+        self.request = request
 
         # get current cart from the session
         cart = self.session.get('cart')
@@ -61,6 +63,16 @@ class Cart():
             self.cart[product_id] = int(product_qty)
 
         self.session.modified = True
+
+        # Deal with login user
+        if self.request.user.is_authenticated:
+            # Get the curent user profile
+            current_user = Profile.objects.filter(user__id=self.request.user.id)
+            #convert {'3':1, '2':4} to {"3":1, "2":4} for JSON
+            carty = str(self.cart)
+            carty = carty.replace("\'", "\"")
+            # Save carty to the profile model
+            current_user.update(old_cart=str(carty))
 
     def __len__(self):
         return len(self.cart)
