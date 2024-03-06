@@ -11,12 +11,18 @@ body {
 
 nav {
   display: flex !important;
+  justify-content: space-around !important;
   background-color: #333;
   height: 60px;
   width: 100%;
   position: fixed !important;
   top: 0;
   z-index: 1;
+}
+
+.nav-container {
+  border: 1px solid red;
+  padding: 0 100px;
 }
 
 .card {
@@ -30,9 +36,11 @@ nav {
 }
 
 .nav-list {
-  display: flex;
-  justify-content: space-between;
+  border: 1px solid red;
+  display: flex !important;
+  justify-content: space-around !important;
   align-items: center;
+  width: 100%;
   padding: 10px;
   background-color: #333;
   color: #fff;
@@ -71,6 +79,7 @@ form 767px to 411
 
 @media only screen and (max-width: 767px) {
   /* Side-nav */
+
   .nav-unorder {
     display: none; /* Initially hide the nav items on smaller screens */
     flex-direction: column; /*nav list items*/
@@ -95,6 +104,11 @@ form 767px to 411
   .nav-unorder form {
     margin-left: 30%;
     margin-bottom: 30px;
+  }
+
+  /* hiding the display and showing toggle button */
+  .nav-container {
+    display: none;
   }
 
   .toggle-button {
