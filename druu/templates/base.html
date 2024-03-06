@@ -9,7 +9,7 @@
         content="Discover a world of stylish furniture for your home, specially curated for pet lovers and gadgets enthusiasts. Explore our collection of modern designs that seamlessly blend comfort, functionality, and pet-friendly features. From cozy pet beds to smart home gadgets, find everything you need to create a harmonious living space for both you and your furry friends. Shop now for quality furniture, innovative gadgets, and pet-friendly solutions at our online store.">
     <meta name="keywords"
         content="dru, dru interiors, furniture shops, furniture, pet-friendly furniture, home decor, gadgets, smart home, pet beds, modern furniture, phones, iphones, ecommerce shops in uganda, top furniture shops">
-    <!-- Add relevant keywords -->
+    
     <meta name="author" content="Aloisius Kasozi">
     <link rel="stylesheet" href="{% static 'style/style.css' %}">
     <link rel="stylesheet" href="{% static 'style/nav.css' %}">
@@ -23,26 +23,28 @@
 
 <body>
     <!-- nav bar -->
-
     <nav>
         <div class="nav-list">
             <h1 class="pname"><span class="d">Dru</span><span class="l">lime</span>
             </h1>
             <button class="toggle-button" id="toggle">&#9776;Menu</button>
         </div>
-        <ul class="nav-unorder">
+        <div class="nav-container"> <!-- Add a container div for navigation items -->
+            <ul class="nav-unorder">
                 <li><a href="{% url 'home' %}">Home</a></li>
                 <li><a href="{% url 'category' 'Beddings' %}">Furniture</a></li>
-                <li><a href="{% url 'category' 'Phones' %}">phones</a></li>
-                <li><a href="{% url 'category' 'Pets' %}">pets</a></li>
-                <form class="d-flex">
-                    <a href="{% url 'cart_summary' %}" class="btn btn-outline-light">
-                        <i class="bi-cart-fill me-1"></i>
-                        Cart
-                        <span class="badge bg-dark text-white ms-1 rounded-pill" id="cart_quantity">{{ cart|length }}</span>
-                    </a>
-                </form>
-
+                <li><a href="{% url 'category' 'Phones' %}">Phones</a></li>
+                <li><a href="{% url 'category' 'Pets' %}">Pets</a></li>
+                <li>
+                    <form class="d-flex">
+                        <a href="{% url 'cart_summary' %}" class="btn btn-outline-light">
+                            <i class="bi-cart-fill me-1"></i>
+                            Cart
+                            <span class="badge bg-dark text-white ms-1 rounded-pill"
+                                id="cart_quantity">{{cart|length}}</span>
+                        </a>
+                    </form>
+                </li>
                 {% if user.is_authenticated %}
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button"
@@ -55,11 +57,20 @@
                         <li><a class="dropdown-item" href="{% url 'update_info' %}">User Info</a></li>
                     </ul>
                 </li>
+                <li><a href="{% url 'logout' %}">Logout</a></li>
+                {% else %}
+                <li><a href="{% url 'login' %}">Login</a></li>
+                <li><a href="{% url 'register' %}">Register</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
 
 
 
 
-                <!-- <li><a class="dropdown-item" href="{% url 'category_summary' %}">All Products</a></li>
+
+    <!-- <li><a class="dropdown-item" href="{% url 'category_summary' %}">All Products</a></li>
                     
                     <nav>    
                     <li class="nav-item dropdown">
@@ -75,20 +86,8 @@
                         </ul>
                     </li> -->
 
-                <!-- cart -->
+    <!-- cart -->
 
-
-                <li><a href="{% url 'logout' %}">Logout</a></li>
-                {% else %}
-
-
-                <li><a href="{% url 'login' %}">Login</a></li>
-                <li><a href="{% url 'register' %}">Register</a></li>
-                {% endif %}
-                <!-- endnav -->
-
-            </ul>
-    </nav>
     <!-- nav end -->
 
     {% if messages %}
