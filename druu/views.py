@@ -8,6 +8,7 @@ from django.contrib.auth.decorators import login_required
 from . forms import UpdateUserForm, OrderForm, ChangePasswordForm, UserInfoForm
 from django.db.models import Q
 from django.http import HttpResponse
+import json
 
 
 def update_info(request):
@@ -119,6 +120,29 @@ def signin(request):
         if user is not None:
             login(request, user)
             capitalized_username = username.capitalize()
+
+            # Do shopping cart stuff
+            current_user = Profile.objects.get(user__id=request.user.id)
+            # Get the saved cart from DB
+            saved_cart = current_user.old_cart
+            # Convert DB string to py Dictionary
+            if saved_cart:
+                # Convert to dictionary using Json
+                converted_cart = json.loads(saved_cart)
+                # Add the loaded cart dictionary to our session
+                cart = Cart(request)
+                # Loop through the cart and add items from DB
+                # {"3":2, "4":5}
+                for key,value in converted_cart.items():
+                    cart.db_add(product=key, quantity=value)
+
+
+
+
+
+
+
+
             messages.success(request, f'Welcome back {capitalized_username}!')
             return redirect('home')
         else:
