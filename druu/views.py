@@ -11,6 +11,11 @@ from django.http import HttpResponse
 import json
 
 
+def payment_success(request):
+    return render(request, 'payment/payment_success.html')
+
+
+
 def update_info(request):
     if request.user.is_authenticated:
         current_user = Profile.objects.get(user__id=request.user.id)
