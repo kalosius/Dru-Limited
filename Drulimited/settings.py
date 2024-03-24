@@ -25,6 +25,7 @@ INSTALLED_APPS = [
     'druu',
     'whitenoise',
     'cart',
+    'payment',
 ]
 
 # middleware is a framework of hooks into Django’s request/response processing. It’s a light, low-level “plugin” system for globally altering Django’s input or output.
@@ -104,17 +105,6 @@ USE_I18N = True
 
 USE_TZ = True
 
-
-INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'druu', 
-    'cart', 
-]
 
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'
