@@ -6,6 +6,10 @@ from . models import Product, Category, Profile
 from cart.cart import Cart
 from django.contrib.auth.decorators import login_required
 from . forms import UpdateUserForm, OrderForm, ChangePasswordForm, UserInfoForm
+
+from payment.forms import ShippingForm
+from payment.models import *
+
 from django.db.models import Q
 from django.http import HttpResponse
 import json
@@ -14,13 +18,24 @@ import json
 
 def update_info(request):
     if request.user.is_authenticated:
+        # Get current User
         current_user = Profile.objects.get(user__id=request.user.id)
+        # Get Current User's Shipping Info
+        shipping_user = ShippingAddress.objects.get(user__id=request.user.id)
+
+        # Get original user form
         form = UserInfoForm(request.POST or None, instance=current_user)
-        if form.is_valid():
+        
+        # Get User's Shipping form
+        shipping_form = ShippingForm(request.POST or None, instance=shipping_user)
+        if form.is_valid() or shipping_form.is_valid():
+            # Save original form
             form.save()
+            # Save shipping form
+            shipping_form.save()
             messages.success(request, 'Your Info Has Been Updated   !!')
             return redirect("home")
-        return render(request, "authentication/update_info.html", {"form":form})
+        return render(request, "authentication/update_info.html", {"form":form, "shipping_form":shipping_form})
     else:
         messages.success(request, "You must be logged in to access the page!!")
         return redirect("home")
