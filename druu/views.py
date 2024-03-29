@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required
 from . forms import UpdateUserForm, OrderForm, ChangePasswordForm, UserInfoForm
 
 from payment.forms import ShippingForm
-from payment.models import *
+from payment.models import ShippingAddress
 
 from django.db.models import Q
 from django.http import HttpResponse
@@ -227,23 +227,23 @@ def phones_and_accessories(request):
 
 
 # checkout page
-def checkout(request):
-    cart = Cart(request)
-    cart_products = cart.get_prods
-    quantities = cart.get_quants
-    totals = cart.cart_total()
+# def checkout(request):
+#     cart = Cart(request)
+#     cart_products = cart.get_prods
+#     quantities = cart.get_quants
+#     totals = cart.cart_total()
 
     # Capturing user details
-    form = OrderForm()
-    if request.method == "POST":
-        form = OrderForm(request.POST)
-        if form.is_valid():
-            form.save()
-            messages.success(request, 'Order Made Successfully')
-        else:
-            messages.success(request, "There's an error in your form..!")
-            form = OrderForm()
-    return render(request, 'authentication/checkout.html', {'cart_products':cart_products, 'quantities':quantities, 'totals':totals, "form":form})
+    # form = OrderForm()
+    # if request.method == "POST":
+    #     form = OrderForm(request.POST)
+    #     if form.is_valid():
+    #         form.save()
+    #         messages.success(request, 'Order Made Successfully')
+    #     else:
+    #         messages.success(request, "There's an error in your form..!")
+    #         form = OrderForm()
+    # return render(request, 'authentication/checkout.html', {'cart_products':cart_products, 'quantities':quantities, 'totals':totals, "form":form})
 
 
 # Searched items

@@ -76,9 +76,10 @@
                     </div>
                 </div>
                 {% endfor %}
-                <br>
-                <div class="container">
+
+                <div align="right " >
                     <h3 style="float: left !important;"><strong>Total: {{ totals }} Ugx </strong>  </h3><a class="btn btn-secondary" href="{% url 'checkout' %}" style="margin-left: 30px;">Checkout</a> 
+                    <a href="{% url 'checkout' %}" class="btn btn-success">Checkout</a>
                 </div>
                 
                 <br>
