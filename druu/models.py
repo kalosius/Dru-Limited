@@ -86,7 +86,7 @@ class Partner(models.Model):
     email = models.EmailField(max_length=100)
     birth_date = models.DateField(null=True, blank=True)
     position = models.CharField(max_length=50)
-    gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
+    gender = models.CharField(max_length=250, choices=GENDER_CHOICES)
     partner_image = models.ImageField(upload_to="uploads/partners/", default="")
     partner_blog = models.TextField(max_length=5000, null=True, blank=True)
     social_url = models.URLField(max_length=2856,   null=True, blank=True)
