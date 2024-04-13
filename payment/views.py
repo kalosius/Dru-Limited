@@ -4,7 +4,6 @@ from payment.forms import ShippingForm
 from payment.models import ShippingAddress
 
 
-
 def checkout(request):
     # Get the cart
     cart = Cart(request)
