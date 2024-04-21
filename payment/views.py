@@ -4,6 +4,23 @@ from payment.forms import ShippingForm, PaymentForm
 from payment.models import ShippingAddress
 from django.contrib import messages 
 
+
+def process_order(request):
+    if request.POST:
+        # Get billing info from last page
+        payment_form = PaymentForm(request.POST or None)
+        #  Get shipping dsession data
+        my_shipping = request.session.get('my_shipping')
+        print(my_shipping)
+        messages.success(request, 'Order Placed!')
+        return redirect('home')
+
+
+    else:
+        messages.success(request, 'Access Denied!')
+        return redirect('home')
+
+
 def billing_info(request):
     if request.POST:
         # Get the cart
@@ -11,6 +28,10 @@ def billing_info(request):
         cart_products = cart.get_prods
         quantities = cart.get_quants
         totals = cart.cart_total()
+
+        # Create a session with shipping info
+        my_shipping =   request.POST
+        request.session['my_shipping'] = my_shipping
 
         # Check to see if the user is logged in
         if request.user.is_authenticated:
