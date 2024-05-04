@@ -153,12 +153,6 @@ def signin(request):
                     cart.db_add(product=key, quantity=value)
 
 
-
-
-
-
-
-
             messages.success(request, f'Welcome back {capitalized_username}!')
             return redirect('home')
         else:
