@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm, SetPasswordForm
 from django import forms
-from . models import Order, Profile
+from . models import Profile
 
 
 class UserInfoForm(forms.ModelForm):
@@ -63,12 +63,6 @@ class UpdateUserForm(UserChangeForm):
         super(UpdateUserForm, self).__init__(*args, **kwargs)
 
 
-class OrderForm(forms.ModelForm):
-    class Meta:
-        model = Order
-        fields = ['product', 'customer', 'quantity', 'address', 'phone_number', 'date', 'status']
 
-
-        
 
 

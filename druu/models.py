@@ -64,18 +64,6 @@ class Product(models.Model):
     def __str__(self):
         return self.name
 
-# Customer orders
-class Order(models.Model):
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
-    quantity = models.IntegerField(default=1)
-    address = models.CharField(max_length=100, default='')
-    phone_number = models.CharField(max_length=30, default='', blank=True)
-    date = models.DateField(default=datetime.datetime.today)
-    status = models.BooleanField(default=False)
-
-    def __str__(self):
-        return self.product
 
 
 # GENDER = [(('male'),('female'))]

@@ -5,7 +5,7 @@ from django.contrib.auth import authenticate, login, logout
 from . models import Product, Category, Profile
 from cart.cart import Cart
 from django.contrib.auth.decorators import login_required
-from . forms import UpdateUserForm, OrderForm, ChangePasswordForm, UserInfoForm
+from . forms import UpdateUserForm, ChangePasswordForm, UserInfoForm
 
 from payment.forms import ShippingForm
 from payment.models import ShippingAddress
