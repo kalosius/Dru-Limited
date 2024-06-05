@@ -142,9 +142,16 @@ def process_order(request):
                         create_order_item.save()
             
             # Delete our cart
+            # for key in list(request.session.keys()):
+            #     if key == "session_key":
+            #         # Delete the key
+            #         del request.session[key]
+            
+            # ai
+            # Delete the cart items from the session
             for key in list(request.session.keys()):
-                if key == "session_key":
-                    # Delete the key
+                if key == "cart":
+                    # Delete the cart key
                     del request.session[key]
 
             # Delete Cart from database(old_cart field)
@@ -185,9 +192,15 @@ def process_order(request):
                         create_order_item.save()
             
              # Delete our cart
+            # for key in list(request.session.keys()):
+            #     if key == "session_key":
+            #         # Delete the key
+            #         del request.session[key]
+
+            # ai Delete our cart
             for key in list(request.session.keys()):
-                if key == "session_key":
-                    # Delete the key
+                if key == "cart":
+                    # Delete the cart key
                     del request.session[key]
 
             
