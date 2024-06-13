@@ -64,26 +64,3 @@ class Product(models.Model):
     def __str__(self):
         return self.name
 
-
-
-# GENDER = [(('male'),('female'))]
-
-class Partner(models.Model):
-    GENDER_CHOICES = [('M', 'Male'),('F', 'Female'),]
-
-    firstname = models.CharField(max_length=50)
-    lastname = models.CharField(max_length=50)
-    email = models.EmailField(max_length=100)
-    birth_date = models.DateField(null=True, blank=True)
-    position = models.CharField(max_length=50)
-    gender = models.CharField(max_length=6, choices=GENDER_CHOICES)
-    partner_image = models.ImageField(upload_to="uploads/partners/", default="")
-    partner_blog = models.TextField(max_length=5000, null=True, blank=True)
-    social_url = models.URLField(max_length=2856,   null=True, blank=True)
-    age = models.IntegerField(default='', null=True, blank=True)
-    contact = models.CharField(max_length=30, default='', blank=True, null=True)
-
-    def __str__(self):
-        return f"{self.firstname} {self.lastname}" 
-
-    

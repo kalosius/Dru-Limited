@@ -1,21 +1,13 @@
 from pathlib import Path
 import os
 
-import environ
-import dj_database_url
-env = environ.Env(
-    # set casting, default value
-    DEBUG=(bool, False)
-)
-
-environ.Env.read_env()
 
 
 BASE_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-SECRET_KEY = env('SECRET_KEY')
+SECRET_KEY = "django-insecure-e^lj7@%6@9qk6*1s+)=co04d*1tb_-^_a4e4tbjcxceq_31qd9"
 
-DEBUG = env('DEBUG')
+DEBUG = True
 
 ALLOWED_HOSTS = ["dru-interiors.onrender.com","localhost", "127.0.0.1"]
 
@@ -29,7 +21,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'druu',
-    'whitenoise',
     'cart',
     'payment',
 ]
@@ -37,7 +28,6 @@ INSTALLED_APPS = [
 # middleware is a framework of hooks into Django’s request/response processing. It’s a light, low-level “plugin” system for globally altering Django’s input or output.
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -80,10 +70,7 @@ DATABASES = {
     }
 }
 
-# DATABASES = {
-#     'default': dj_database_url.parse(env('DATABASE_URL'))
 
-# }
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
