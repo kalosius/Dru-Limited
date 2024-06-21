@@ -1,16 +1,19 @@
 from pathlib import Path
 import os
+from dotenv import load_dotenv
 
 
+# Load enviromental variables
+load_dotenv()
 
 BASE_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-SECRET_KEY = "django-insecure-e^lj7@%6@9qk6*1s+)=co04d*1tb_-^_a4e4tbjcxceq_31qd9"
+SECRET_KEY = 'django-insecure-e^lj7@%6@9qk6*1s+)=co04d*1tb_-^_a4e4tbjcxceq_31qd9'
 
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ["dru-interiors.onrender.com","localhost", "127.0.0.1"]
-
+ALLOWED_HOSTS = ["dru-limited-production.up.railway.app", 'https://dru-limited-production.up.railway.app']
+CSRF_TRUSTED_ORIGINS = ['https://dru-limited-production.up.railway.app']
 # Application definition
 
 INSTALLED_APPS = [
@@ -23,6 +26,8 @@ INSTALLED_APPS = [
     'druu',
     'cart',
     'payment',
+    'whitenoise.runserver_nostatic',
+
 ]
 
 # middleware is a framework of hooks into Django’s request/response processing. It’s a light, low-level “plugin” system for globally altering Django’s input or output.
@@ -33,8 +38,7 @@ MIDDLEWARE = [
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',  
+    'django.middleware.clickjacking.XFrameOptionsMiddleware', 
 ]
 
 # ROOT_URLCONF is a string (Python path to module) that specifies the full Python path to your root URLconf. For example, 'mydjangoapps.urls'.
@@ -65,8 +69,15 @@ WSGI_APPLICATION = 'Drulimited.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3')
+        # 'ENGINE': 'django.db.backends.sqlite3',
+        # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3')
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'railway',
+        'USER': 'postgres',
+        'PASSWORD': os.environ['DB_PASSWORD'],
+        'HOST': 'roundhouse.proxy.rlwy.net',
+        'PORT': '50577',
+
     }
 }
 
@@ -108,10 +119,10 @@ STATIC_URL = '/static/'
 
 STATIC_DIR = os.path.join(BASE_DIR, 'static')
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static')
+    os.path.join(BASE_DIR, 'staticfiles')
 ]
 
 
