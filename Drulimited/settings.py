@@ -10,9 +10,9 @@ BASE_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__
 
 SECRET_KEY = 'django-insecure-e^lj7@%6@9qk6*1s+)=co04d*1tb_-^_a4e4tbjcxceq_31qd9'
 
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ["dru-limited-production.up.railway.app", 'https://dru-limited-production.up.railway.app']
+ALLOWED_HOSTS = []
 CSRF_TRUSTED_ORIGINS = ['https://dru-limited-production.up.railway.app']
 # Application definition
 
@@ -69,14 +69,14 @@ WSGI_APPLICATION = 'Drulimited.wsgi.application'
 
 DATABASES = {
     'default': {
-        # 'ENGINE': 'django.db.backends.sqlite3',
-        # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3')
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'railway',
-        'USER': 'postgres',
-        'PASSWORD': os.environ['DB_PASSWORD'],
-        'HOST': 'roundhouse.proxy.rlwy.net',
-        'PORT': '50577',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3')
+        # 'ENGINE': 'django.db.backends.postgresql',
+        # 'NAME': 'railway',
+        # 'USER': 'postgres',
+        # 'PASSWORD': os.environ['DB_PASSWORD'],
+        # 'HOST': 'roundhouse.proxy.rlwy.net',
+        # 'PORT': '50577',
 
     }
 }

@@ -47,19 +47,6 @@ class Category(models.Model):
 		verbose_name_plural = 'categories'
 
 
-# Customers
-class Customer(models.Model):
-	first_name = models.CharField(max_length=50)
-	last_name = models.CharField(max_length=50)
-	phone = models.CharField(max_length=10)
-	email = models.EmailField(max_length=100)
-	password = models.CharField(max_length=100)
-
-
-	def __str__(self):
-		return f'{self.first_name} {self.last_name}'
-
-
 
 # All of our Products
 class Product(models.Model):
@@ -74,6 +61,21 @@ class Product(models.Model):
 
 	def __str__(self):
 		return self.name
+	
+
+
+	# Customers
+class Customer(models.Model):
+	first_name = models.CharField(max_length=50)
+	last_name = models.CharField(max_length=50)
+	phone = models.CharField(max_length=10)
+	email = models.EmailField(max_length=100)
+	password = models.CharField(max_length=100)
+
+
+	def __str__(self):
+		return f'{self.first_name} {self.last_name}'
+	
 
 
 # Customer Orders
@@ -88,3 +90,4 @@ class Order(models.Model):
 
 	def __str__(self):
 		return self.product
+
