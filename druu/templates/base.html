@@ -1,232 +1,46 @@
 {% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description"
-        content="Discover a world of stylish furniture for your home, specially curated for pet lovers and gadgets enthusiasts. Explore our collection of modern designs that seamlessly blend comfort, functionality, and pet-friendly features. From cozy pet beds to smart home gadgets, find everything you need to create a harmonious living space for both you and your furry friends. Shop now for quality furniture, innovative gadgets, and pet-friendly solutions at our online store.">
-    <meta name="keywords"
-        content="dru, dru interiors, furniture shops, furniture, pet-friendly furniture, home decor, gadgets, smart home, pet beds, modern furniture, phones, iphones, ecommerce shops in uganda, top furniture shops">
-    <meta name="author" content="Aloisius Kasozi">
-    <link rel="icon" type="image/x-icon" href="{% static 'assets/Dru-interiors.png' %}" />
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
-    <title>DruEnterprises</title>
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-
-        <style>
-            .toggle-button{
-                display: none;
-            }
-            nav{
-                background-color: #212529;
-                color: white;
-                display: flex;
-                justify-content: space-evenly;
-                padding: 20px;
-                text-align: center;
-                align-items: center;
-                align-content: center;
-                font-family: Verdana, Geneva, Tahoma, sans-serif;
-
-            }
-
-            nav ul {
-                text-decoration: none;
-                list-style-type: none;
-                display: flex;
-                width: 800px;
-                justify-content: space-between;
-                align-items: center;
-                align-content: center;
-            }
-
-            nav ul a{
-                color: white;
-                text-decoration: none;
-            }
-
-            nav ul li a:hover{
-                border-bottom: 1px solid #577968;
-                color: white !important;
-            }
-
-            .d-flex a:hover{
-                color: black !important;
-            }
-
-
-            @media screen and (max-width: 768px) {
-                nav{
-                    width: 100%; 
-                    position: fixed;
-                    z-index: 3 !important;
-            }
-
-            nav ul {
-                width: 100%;
-            }
-
-            nav ul li{
-                margin-left: 15px
-            }
-        }
-
-        @media screen and (max-width: 425px) {
-
-            
-            .nav-unorder {
-                display: none;
-            }
-            
-            .toggle-button{
-                display: block;
-            }
-        }
-            
-        </style>
-</head>
-
-<body>
-    <!-- nav bar -->
-    <nav>
-        <div>
-            <h1>Drulime
-            </h1>
-        </div>
-        <div class="nav-container"> <!-- Add a container div for navigation items -->
-            <ul class="nav-unorder" id="nav-list">
-                <li><a href="{% url 'home' %}">Home</a></li>
-                <li><a href="{% url 'category' 'Beddings' %}">Furniture</a></li>
-                <li><a href="{% url 'category' 'Phones' %}">Phones</a></li>
-                <li><a href="{% url 'category' 'Pets' %}">Pets</a></li>
-                <li>
-                    <form class="d-flex">
-                        <a href="{% url 'cart_summary' %}" class="btn btn-outline-light">
-                            <i class="bi-cart-fill me-1"></i>
-                            Cart
-                            <span class="badge bg-dark text-white ms-1 rounded-pill"
-                                id="cart_quantity">{{cart|length}}</span>
-                        </a>
-                    </form>
-                </li>
-                {% if user.is_authenticated %}
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false">Profile</a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="{% url 'update_user' %}">User Profile</a></li>
-                        <li>
-                            <hr class="dropdown-divider" />
-                        </li>
-                        <li><a class="dropdown-item" href="{% url 'update_info' %}">User Info</a></li>
-                    </ul>
-                </li>
-
-                {% if user.is_superuser %}
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false">Orders</a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="{% url 'shipped_dash' %}">Shipped Orders</a></li>
-                        <li>
-                            <hr class="dropdown-divider" />
-                        </li>
-                        <li><a class="dropdown-item" href="{% url 'not_shipped_dash' %}">UnShipped Orders</a></li>
-                    </ul>
-                </li>
-                {% endif %}
-
-
-
-                <li><a href="{% url 'logout' %}">Logout</a></li>
-                {% else %}
-                <li><a href="{% url 'login' %}">Login</a></li>
-                <li><a href="{% url 'register' %}">Register</a></li>
-                {% endif %}
-            </ul>
-        </div>
-        <button id="toggle-button" class="toggle-button" onclick="toggle()">Toggle</button>
-    </nav>
-
-
-
-
-
-    <!-- <li><a class="dropdown-item" href="{% url 'category_summary' %}">All Products</a></li>
-                    
-                    <nav>    
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Categories</a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="{% url 'category_summary' %}">All Products</a></li>
-                            <li><hr class="dropdown-divider" /></li>
-                            <li><a class="dropdown-item" href="{% url 'category' 'Beddings' %}">Furniture</a></li>
-                            <li><a class="dropdown-item" href="{% url 'category' 'Phones' %}">Phones</a></li>
-                            <li><a class="dropdown-item" href="{% url 'category' 'Pets' %}">Pets</a></li>
-                            <li><a class="dropdown-item" href="{% url 'category' 'Gadgets' %}">Gadgets</a></li>
-                            <li><a class="dropdown-item" href="{% url 'category' 'Soffer' %}">Soffer</a></li>
-                        </ul>
-                    </li> -->
-
-    <!-- cart -->
-
-    <!-- nav end -->
-
-    {% if messages %}
-    {% for message in messages %}
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-        <strong>{{ message }}</strong>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-    {% endfor %}
-    {% endif %}
-
-    <!-- In the block content, its where other pages inherit the base from -->
-    {% block content %}
-
-    {% endblock %}
-    <!-- Footer-->
-    <footer class="py-5 bg-dark footer-edit my-5 pt-5 text-muted text-center text-small">
-        <div class="container">
-            <p class="m-0 text-center text-white">Copyright &copy; DruEnterprises 2024 </p>
-            <p class="mb-1">&copy; 2024-2025 Dru-Enterprises</p>
-            <ul class="list-inline">
-                <li class="list-inline-item"><a href="#">Privacy</a></li>
-                <li class="list-inline-item"><a href="#">Terms</a></li>
-                <li class="list-inline-item"><a href="#">Support</a></li>
-            </ul>
-            <li><a href="{% url 'about' %}">About</a></li>
-            <li><a href="{% url 'contact' %}">Contact</a></li>
-        </div>
-    </footer>
-    <!-- footer end -->
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-
-    <script src="{% static 'js/scripts.js' %}"></script>
-    <script>
-        let toggleState = false;
-        function toggle(){
-            toggleState = !toggleState;
-            if (toggleState){
-                //code to be executed when toggle on
-                document.getElementById("nav-list").style.display = "block";
-            } else{
-                //code to be executed when the button toggle is off
-                document.getElementById("nav-list").style.display = "none";
-            }
-        }   
-    </script>
-
-    <style>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Dru Enterprises</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="{% static 'assets/computer_14743130.png' %}" />
+        <!-- Bootstrap icons-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
         
-    </style>
+    </head>
+    <body>
+        {% include 'navbar.html' %}
+        {% if messages %}
+            {% for message in messages %}
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+  {{ message }}
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+            {% endfor %}
+        {% endif %}
+        
+        {% block content %}
+        {% endblock %}
 
 
-</body>
 
+
+        <!-- Footer-->
+        <footer class="py-5 bg-dark">
+            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Dru Enterprises 2024</p></div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="{% static 'js/scripts.js' %}"></script>
+    </body>
 </html>
