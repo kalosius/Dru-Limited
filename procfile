@@ -1,2 +1,1 @@
-
-web: gunicorn Drulimited.wsgi:app
+web: gunicorn Drulimited.wsgi:application
