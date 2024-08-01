@@ -1,2 +1,2 @@
 web: gunicorn druu.wsgi --log-file
-python manage.py migrate && gunicorn druu.wsgi
+web: python manage.py migrate && gunicorn druu.wsgi
