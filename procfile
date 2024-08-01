@@ -1,1 +1,2 @@
-web: gunicorn Drulimited.wsgi:application
+web: gunicorn Drulimited.wsgi --log-file
+web: python manage.py migrate && gunicorn Drulimited.wsgi
