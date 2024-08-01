@@ -1,1 +1,2 @@
-web: gunicorn cart.wsgi
+web: gunicorn druu.wsgi --log-file
+web: python manage.py migrate && gunicorn druu.wsgi
