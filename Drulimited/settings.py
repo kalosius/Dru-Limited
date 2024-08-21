@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 
 
 # Load enviromental variables
-load_dotenv()
+# load_dotenv()
 
 
 BASE_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
