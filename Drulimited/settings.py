@@ -6,6 +6,7 @@ from dotenv import load_dotenv
 # Load enviromental variables
 load_dotenv()
 
+
 BASE_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 SECRET_KEY = 'django-insecure-e^lj7@%6@9qk6*1s+)=co04d*1tb_-^_a4e4tbjcxceq_31qd9'
