@@ -13,7 +13,7 @@ SECRET_KEY = 'django-insecure-e^lj7@%6@9qk6*1s+)=co04d*1tb_-^_a4e4tbjcxceq_31qd9
 
 DEBUG = True
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ["dru-limited-production.up.railway.app"]
 CSRF_TRUSTED_ORIGINS = ['https://dru-limited-production.up.railway.app']
 
 
